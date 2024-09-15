@@ -1,0 +1,28 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.9.0/schema.json",
+	"organizeImports": {
+		"enabled": true
+	},
+	"linter": {
+		"rules": {
+			"complexity": {
+				// Need to turn off forEach detection,
+				// very annoying
+				"noForEach": "off"
+			}
+		}
+	},
+	"overrides": [
+		{
+			"include": ["*.astro"],
+			"linter": {
+				"rules": {
+					"style": {
+						"useConst": "off",
+						"useImportType": "off"
+					}
+				}
+			}
+		}
+	]
+}
