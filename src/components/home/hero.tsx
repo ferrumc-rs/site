@@ -3,8 +3,8 @@ import { GitHubBtn } from "./github-btn";
 
 export const Hero = () => {
   return (
-    <div className="flex flex-col items-center justify-start min-h-[calc(100vh-80px)] pt-[80px]">
-      <h1 className="text-white text-center font-roboto text-[72px] font-extrabold leading-[110%] max-w-[994px]">
+    <div className="flex flex-col items-center max-lg:px-6 justify-start min-h-[calc(100vh-80px)] pt-[80px]">
+      <h1 className="text-white text-center font-roboto text-[30px] sm:text-[40px] xl:text-[72px] font-extrabold leading-[110%] max-w-[994px]">
         <TypeAnimation
           sequence={[
             "Multithreaded",
@@ -27,11 +27,11 @@ export const Hero = () => {
         />
         server you never knew you needed
       </h1>
-      <h2 className="text-white py-[25px] font-roboto text-[20px] tracking-[160%] opacity-65 max-w-[798px] text-center">
+      <h2 className="text-white py-[25px] font-roboto text-[16px] lg:text-[20px] tracking-[160%] opacity-65 max-w-[798px] text-center">
         A high-performance Minecraft server implementation, crafted in Rust for unparalleled speed and efficiency.
       </h2>
 
-      <div className="flex items-center gap-4 text-white">
+      <div className="flex max-lg:flex-col items-center gap-4 text-white">
         <button type="button" className="bg-primary px-4 py-3 rounded-xl">
           Download
         </button>
@@ -39,7 +39,7 @@ export const Hero = () => {
         <GitHubBtn />
       </div>
 
-      <img src="/icon.png" className="max-w-[450px]" />
+      <img src="/icon.png" className="w-full max-w-[450px]" />
     </div>
   );
 };
