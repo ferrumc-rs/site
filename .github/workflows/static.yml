@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Build and deploy to GitHub Pages
+name: Build and Deploy to GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -8,6 +8,15 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      release_version:
+        description: 'Release version that triggered this deploy'
+        required: false
+        type: string
+
+  # Can be triggered by ferrumc releases
+  repository_dispatch:
+    types: [release-published]
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -37,6 +46,8 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: Build project
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn build
       - name: Setup Pages
         uses: actions/configure-pages@v5

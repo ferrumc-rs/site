@@ -1,0 +1,161 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MobileMenu from "../components/MobileMenu";
+import { Animated } from "../components/ScrollReveal";
+import PlatformCard from "../components/PlatformCard";
+import DockerCard from "../components/DockerCard";
+import { getLatestRelease } from "../lib/releases";
+
+const latestRelease = await getLatestRelease();
+
+const formattedDate = latestRelease
+  ? new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(new Date(latestRelease.date))
+  : "";
+---
+
+<BaseLayout
+  title="Download FerrumC - High-Performance Minecraft Server"
+  description="Download the latest version of FerrumC for Docker, Windows, Linux, or macOS. Get started with a blazing-fast Rust-powered Minecraft server."
+  canonical="https://ferrumc.com/downloads"
+>
+  <header class="h-16">
+    <div class="mx-auto max-w-[1100px] px-5 h-full grid grid-cols-[auto_1fr_auto] items-center gap-4 relative">
+      <a href="/" class="flex items-center gap-1 md:gap-2">
+        <img src="/images/logo.png" alt="FerrumC" class="h-9 w-9 rounded logo-img" />
+        <span class="text-sm font-bold">FerrumC</span>
+        <span
+          class="inline-flex items-center rounded-full bg-orange-600/90 px-2 py-[2px] text-[10px] uppercase tracking-wide leading-none shadow-sm ml-1"
+          >experimental</span
+        >
+      </a>
+      <nav class="hidden md:flex justify-start gap-3 ml-2 text-sm text-neutral-400">
+        <a href="/#features" class="hover:text-white">Features</a>
+        <a href="/downloads" class="hover:text-white text-white">Downloads</a>
+        <a href="https://docs.ferrumc.com/" class="hover:text-white">Documentation</a>
+      </nav>
+      <a
+        class="hidden sm:inline-flex items-center rounded-lg bg-white/10 px-4 py-2 font-semibold hover:bg-white/15 justify-self-end"
+        href="https://github.com/ferrumc-rs/ferrumc"
+        >Contribute on GitHub</a
+      >
+      <MobileMenu client:load />
+    </div>
+  </header>
+
+  <main>
+    <section class="pt-12 pb-8 min-h-[40vh] flex items-center bg-gradient-to-b from-orange-950/20 to-transparent">
+      <div class="mx-auto max-w-[1100px] px-5 w-full">
+        <Animated client:load delay={0.05}>
+          <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Download FerrumC</h1>
+          {
+            latestRelease && (
+              <p class="text-neutral-400 text-lg">
+                Latest Release: <span class="text-orange-500 font-semibold">{latestRelease.version}</span> •{" "}
+                {formattedDate}
+              </p>
+            )
+          }
+        </Animated>
+      </div>
+    </section>
+
+    {
+      latestRelease && (
+        <>
+          <Animated client:load delay={0.1}>
+            <section class="mx-auto max-w-[1100px] px-5 py-8">
+              <h2 class="text-2xl font-bold mb-6">Docker (Recommended)</h2>
+              <DockerCard client:load dockerTag={latestRelease.dockerTag} />
+            </section>
+          </Animated>
+
+          <Animated client:load delay={0.15}>
+            <section class="mx-auto max-w-[1100px] px-5 py-8">
+              <h2 class="text-2xl font-bold mb-6">Native Binaries</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <PlatformCard
+                  client:load
+                  platform="Windows x64"
+                  icon="🪟"
+                  assets={latestRelease.assets}
+                  platformKey="windows-x64"
+                />
+                <PlatformCard
+                  client:load
+                  platform="Linux x64"
+                  icon="🐧"
+                  assets={latestRelease.assets}
+                  platformKey="linux-x64"
+                />
+                <PlatformCard
+                  client:load
+                  platform="macOS Intel"
+                  icon="🍎"
+                  assets={latestRelease.assets}
+                  platformKey="macos-x64"
+                />
+                <PlatformCard
+                  client:load
+                  platform="macOS Apple Silicon"
+                  icon="🍎"
+                  assets={latestRelease.assets}
+                  platformKey="macos-arm64"
+                />
+              </div>
+            </section>
+          </Animated>
+
+          <Animated client:load delay={0.2}>
+            <section class="mx-auto max-w-[1100px] px-5 py-8">
+              <h2 class="text-2xl font-bold mb-4">Changelog</h2>
+              <div class="rounded-xl border border-white/10 bg-white/5 p-6 prose prose-invert prose-sm max-w-none">
+                <div set:html={latestRelease.changelog.replace(/\n/g, "<br>")} />
+              </div>
+            </section>
+          </Animated>
+
+          <section class="mx-auto max-w-[1100px] px-5 py-8">
+            <div class="text-center">
+              <a
+                href={`https://github.com/${latestRelease ? "ferrumc-rs/ferrumc/releases" : "#"}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400"
+              >
+                View all releases on GitHub →
+              </a>
+            </div>
+          </section>
+        </>
+      )
+    }
+
+    {
+      !latestRelease && (
+        <section class="mx-auto max-w-[1100px] px-5 py-16 text-center">
+          <p class="text-xl text-neutral-400 mb-6">No releases available yet. Check back soon!</p>
+          <a
+            href="https://github.com/ferrumc-rs/ferrumc"
+            class="inline-flex items-center rounded-lg bg-orange-600 px-6 py-3 font-semibold hover:bg-orange-500"
+          >
+            View Project on GitHub
+          </a>
+        </section>
+      )
+    }
+  </main>
+
+  <footer class="border-t border-white/10 mt-12 py-5">
+    <div class="mx-auto max-w-[1100px] px-5 flex items-center justify-between text-neutral-400 text-sm">
+      <div>© 2025 FerrumC</div>
+      <div class="space-x-3">
+        <a class="hover:text-white" href="#">Privacy</a>
+        <a class="hover:text-white" href="#">Terms</a>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>

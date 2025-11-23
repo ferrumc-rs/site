@@ -1,0 +1,72 @@
+---
+import "../style.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+}
+
+const DEFAULT_TITLE = "FerrumC - High-Performance Multi-Threaded Minecraft Server";
+const DEFAULT_DESCRIPTION =
+  "FerrumC is a fully multi-threaded Minecraft server built in Rust. Experience fast worlds, smooth ticks, and lean memory usage while staying compatible with vanilla clients.";
+const DEFAULT_IMAGE = "https://ferrumc.com/images/in_game.png";
+const DEFAULT_CANONICAL = "https://ferrumc.com/";
+
+const { title = DEFAULT_TITLE, description = DEFAULT_DESCRIPTION, canonical = DEFAULT_CANONICAL, image = DEFAULT_IMAGE } =
+  Astro.props as Props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="minecraft server, rust, multi-threaded, high performance, vanilla compatible, minecraft 1.20.8, ferrumc, minecraft hosting"
+    />
+    <meta name="author" content="FerrumC Team" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="en" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="FerrumC Minecraft server in-game screenshot" />
+    <meta property="og:site_name" content="FerrumC" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image:alt" content="FerrumC Minecraft server in-game screenshot" />
+    <meta name="twitter:creator" content="@ferrumc" />
+    <meta name="twitter:site" content="@ferrumc" />
+
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#ea580c" />
+    <meta name="msapplication-TileColor" content="#ea580c" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FerrumC" />
+
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" sizes="64x64" href="/images/logo-64.png" />
+    <link rel="apple-touch-icon" href="/images/logo.png" />
+  </head>
+  <body class="bg-neutral-900 text-white">
+    <slot />
+  </body>
+</html>
