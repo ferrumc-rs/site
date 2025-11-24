@@ -1,3 +1,5 @@
+import { getMockReleases } from "./mockReleases";
+
 interface GitHubRelease {
   id: number;
   tag_name: string;
@@ -48,135 +50,13 @@ function detectPlatform(filename: string): ReleaseAsset["platform"] | null {
   return null;
 }
 
-function getMockReleases(): Release[] {
-  return [
-    {
-      version: "v0.3.0",
-      date: new Date("2024-03-15").toISOString(),
-      changelog: `## What's New
-- **Performance**: 40% faster chunk loading
-- **Features**: Added support for custom dimensions
-- **Improvements**: Better memory management
-- **Bug Fixes**: Fixed player teleportation issues
-- **Dependencies**: Updated to latest Rust nightly
-
-## Breaking Changes
-- Configuration format has changed, see migration guide
-
-## Contributors
-Thank you to all our contributors who made this release possible!`,
-      assets: [
-        {
-          platform: "windows-x64",
-          url: "#",
-          filename: "ferrumc-v0.3.0-x86_64-pc-windows-msvc.exe",
-          size: 15728640, // 15 MB
-        },
-        {
-          platform: "linux-x64",
-          url: "#",
-          filename: "ferrumc-v0.3.0-x86_64-unknown-linux-gnu",
-          size: 12582912, // 12 MB
-        },
-        {
-          platform: "linux-arm64",
-          url: "#",
-          filename: "ferrumc-v0.3.0-aarch64-unknown-linux-gnu",
-          size: 11534336, // 11 MB
-        },
-        {
-          platform: "macos-arm64",
-          url: "#",
-          filename: "ferrumc-v0.3.0-aarch64-apple-darwin",
-          size: 12582912, // 12 MB
-        },
-      ],
-      dockerTag: "v0.3.0",
-    },
-    {
-      version: "v0.2.5",
-      date: new Date("2024-02-28").toISOString(),
-      changelog: `## Highlights
-- **New**: Redis support for cross-server communication
-- **Security**: Enhanced authentication system
-- **Logging**: Improved logging with structured output
-- **UI**: Better console interface
-
-## Bug Fixes
-- Fixed memory leak in chunk caching
-- Resolved connection timeout issues
-- Fixed entity tracking bugs`,
-      assets: [
-        {
-          platform: "windows-x64",
-          url: "#",
-          filename: "ferrumc-v0.2.5-x86_64-pc-windows-msvc.exe",
-          size: 14680064,
-        },
-        {
-          platform: "linux-x64",
-          url: "#",
-          filename: "ferrumc-v0.2.5-x86_64-unknown-linux-gnu",
-          size: 11534336,
-        },
-        {
-          platform: "linux-arm64",
-          url: "#",
-          filename: "ferrumc-v0.2.5-aarch64-unknown-linux-gnu",
-          size: 10485760,
-        },
-        {
-          platform: "macos-arm64",
-          url: "#",
-          filename: "ferrumc-v0.2.5-aarch64-apple-darwin",
-          size: 11534336,
-        },
-      ],
-      dockerTag: "v0.2.5",
-    },
-    {
-      version: "v0.2.0",
-      date: new Date("2024-02-01").toISOString(),
-      changelog: `## Major Update
-- **New**: Plugin system (experimental)
-- **Config**: New YAML-based configuration
-- **Worlds**: Multi-world support
-- **Metrics**: Built-in Prometheus metrics
-
-## Known Issues
-- Plugin API is still experimental
-- Some edge cases in world generation`,
-      assets: [
-        {
-          platform: "windows-x64",
-          url: "#",
-          filename: "ferrumc-v0.2.0-x86_64-pc-windows-msvc.exe",
-          size: 13631488,
-        },
-        {
-          platform: "linux-x64",
-          url: "#",
-          filename: "ferrumc-v0.2.0-x86_64-unknown-linux-gnu",
-          size: 10485760,
-        },
-        {
-          platform: "macos-arm64",
-          url: "#",
-          filename: "ferrumc-v0.2.0-aarch64-apple-darwin",
-          size: 10485760,
-        },
-      ],
-      dockerTag: "v0.2.0",
-    },
-  ];
-}
-
 export async function fetchReleases(): Promise<Release[]> {
   // Use mock data if environment variable is set
   if (import.meta.env.USE_MOCK_DATA === "true") {
     console.log("Using mock release data");
     return getMockReleases();
   }
+  
   try {
     const headers: HeadersInit = {
       Accept: "application/vnd.github+json",
@@ -236,6 +116,10 @@ export async function fetchReleases(): Promise<Release[]> {
 export async function getLatestRelease(): Promise<Release | null> {
   const releases = await fetchReleases();
   return releases[0] || null;
+}
+
+export async function getAllReleases(): Promise<Release[]> {
+  return await fetchReleases();
 }
 
 function getFallbackReleases(): Release[] {

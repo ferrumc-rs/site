@@ -4,10 +4,13 @@ import MobileMenu from "../components/MobileMenu";
 import { Animated } from "../components/ScrollReveal";
 import PlatformCard from "../components/PlatformCard";
 import DockerCard from "../components/DockerCard";
-import { getLatestRelease } from "../lib/releases";
+import { getLatestRelease, getAllReleases } from "../lib/releases";
 import { marked } from "marked";
 
 const latestRelease = await getLatestRelease();
+const allReleases = await getAllReleases();
+const previousReleases = allReleases.slice(1); // All releases except the latest
+
 const changelogHtml = latestRelease ? await marked(latestRelease.changelog) : "";
 
 const formattedDate = latestRelease
@@ -119,6 +122,105 @@ const formattedDate = latestRelease
               </div>
             </section>
           </Animated>
+
+          {
+            previousReleases.length > 0 && (
+              <Animated client:load delay={0.25}>
+                <section class="mx-auto max-w-[1100px] px-5 py-6">
+                  <h2 class="text-2xl font-bold mb-4">Previous Versions</h2>
+                  <div class="space-y-4">
+                    {previousReleases.map(async (release, index) => {
+                      const releaseChangelogHtml = await marked(release.changelog);
+                      const releaseFormattedDate = new Intl.DateTimeFormat("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      }).format(new Date(release.date));
+
+                      return (
+                        <details class="rounded-xl border border-white/10 bg-white/5 overflow-hidden group">
+                          <summary class="cursor-pointer p-6 hover:bg-white/5 transition-colors list-none flex justify-between items-center">
+                            <div>
+                              <h3 class="text-xl font-semibold text-orange-500">{release.version}</h3>
+                              <p class="text-sm text-neutral-400 mt-1">{releaseFormattedDate}</p>
+                            </div>
+                            <svg
+                              class="w-6 h-6 text-neutral-400 transition-transform group-open:rotate-180"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </summary>
+                          <div class="border-t border-white/10 p-6">
+                            {/* Docker section for this version */}
+                            {release.dockerTag && (
+                              <div class="mb-6">
+                                <h4 class="text-lg font-semibold mb-3">Docker</h4>
+                                <DockerCard client:load dockerTag={release.dockerTag} />
+                              </div>
+                            )}
+
+                            {/* Native binaries for this version */}
+                            <div class="mb-6">
+                              <h4 class="text-lg font-semibold mb-3">Native Binaries</h4>
+                              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                {release.assets.some((a) => a.platform === "windows-x64") && (
+                                  <PlatformCard
+                                    client:load
+                                    platform="Windows x64"
+                                    iconName="monitor"
+                                    assets={release.assets}
+                                    platformKey="windows-x64"
+                                  />
+                                )}
+                                {release.assets.some((a) => a.platform === "linux-x64") && (
+                                  <PlatformCard
+                                    client:load
+                                    platform="Linux x64"
+                                    iconName="server"
+                                    assets={release.assets}
+                                    platformKey="linux-x64"
+                                  />
+                                )}
+                                {release.assets.some((a) => a.platform === "linux-arm64") && (
+                                  <PlatformCard
+                                    client:load
+                                    platform="Linux ARM64"
+                                    iconName="cpu"
+                                    assets={release.assets}
+                                    platformKey="linux-arm64"
+                                  />
+                                )}
+                                {release.assets.some((a) => a.platform === "macos-arm64") && (
+                                  <PlatformCard
+                                    client:load
+                                    platform="macOS Apple Silicon"
+                                    iconName="apple"
+                                    assets={release.assets}
+                                    platformKey="macos-arm64"
+                                  />
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Changelog for this version */}
+                            <div>
+                              <h4 class="text-lg font-semibold mb-3">Changelog</h4>
+                              <div class="prose prose-invert prose-sm max-w-none">
+                                <div set:html={releaseChangelogHtml} />
+                              </div>
+                            </div>
+                          </div>
+                        </details>
+                      );
+                    })}
+                  </div>
+                </section>
+              </Animated>
+            )
+          }
 
           <section class="mx-auto max-w-[1100px] px-5 py-6">
             <div class="text-center">
