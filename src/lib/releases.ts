@@ -54,11 +54,11 @@ function getMockReleases(): Release[] {
       version: "v0.3.0",
       date: new Date("2024-03-15").toISOString(),
       changelog: `## What's New
-- ⚡ **Performance**: 40% faster chunk loading
-- 🎮 **Features**: Added support for custom dimensions
-- 🔧 **Improvements**: Better memory management
-- 🐛 **Bug Fixes**: Fixed player teleportation issues
-- 📦 **Dependencies**: Updated to latest Rust nightly
+- **Performance**: 40% faster chunk loading
+- **Features**: Added support for custom dimensions
+- **Improvements**: Better memory management
+- **Bug Fixes**: Fixed player teleportation issues
+- **Dependencies**: Updated to latest Rust nightly
 
 ## Breaking Changes
 - Configuration format has changed, see migration guide
@@ -97,10 +97,10 @@ Thank you to all our contributors who made this release possible!`,
       version: "v0.2.5",
       date: new Date("2024-02-28").toISOString(),
       changelog: `## Highlights
-- 🚀 **New**: Redis support for cross-server communication
-- 🔒 **Security**: Enhanced authentication system
-- 📝 **Logging**: Improved logging with structured output
-- 🎨 **UI**: Better console interface
+- **New**: Redis support for cross-server communication
+- **Security**: Enhanced authentication system
+- **Logging**: Improved logging with structured output
+- **UI**: Better console interface
 
 ## Bug Fixes
 - Fixed memory leak in chunk caching
@@ -138,10 +138,10 @@ Thank you to all our contributors who made this release possible!`,
       version: "v0.2.0",
       date: new Date("2024-02-01").toISOString(),
       changelog: `## Major Update
-- 🎉 **New**: Plugin system (experimental)
-- ⚙️ **Config**: New YAML-based configuration
-- 🌍 **Worlds**: Multi-world support
-- 📊 **Metrics**: Built-in Prometheus metrics
+- **New**: Plugin system (experimental)
+- **Config**: New YAML-based configuration
+- **Worlds**: Multi-world support
+- **Metrics**: Built-in Prometheus metrics
 
 ## Known Issues
 - Plugin API is still experimental

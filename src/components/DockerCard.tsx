@@ -1,3 +1,5 @@
+import { Container } from 'lucide-react';
+
 interface DockerCardProps {
   dockerTag?: string;
 }
@@ -13,7 +15,7 @@ export default function DockerCard({ dockerTag = "latest" }: DockerCardProps) {
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-6">
       <div className="flex items-center gap-3 mb-4">
-        <div className="text-4xl">🐳</div>
+        <Container className="w-10 h-10 text-orange-500" />
         <div>
           <h3 className="text-lg font-semibold">Docker</h3>
           <p className="text-sm text-neutral-400">Recommended for all platforms</p>

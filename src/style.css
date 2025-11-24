@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* Avoid accidental horizontal scroll from decorative elements */
 html,
