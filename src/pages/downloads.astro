@@ -5,8 +5,10 @@ import { Animated } from "../components/ScrollReveal";
 import PlatformCard from "../components/PlatformCard";
 import DockerCard from "../components/DockerCard";
 import { getLatestRelease } from "../lib/releases";
+import { marked } from "marked";
 
 const latestRelease = await getLatestRelease();
+const changelogHtml = latestRelease ? await marked(latestRelease.changelog) : "";
 
 const formattedDate = latestRelease
   ? new Intl.DateTimeFormat("en-US", {
@@ -47,7 +49,7 @@ const formattedDate = latestRelease
   </header>
 
   <main>
-    <section class="pt-12 pb-8 min-h-[40vh] flex items-center bg-gradient-to-b from-orange-950/20 to-transparent">
+    <section class="pt-8 pb-6 bg-gradient-to-b from-orange-950/20 to-transparent">
       <div class="mx-auto max-w-[1100px] px-5 w-full">
         <Animated client:load delay={0.05}>
           <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Download FerrumC</h1>
@@ -67,15 +69,15 @@ const formattedDate = latestRelease
       latestRelease && (
         <>
           <Animated client:load delay={0.1}>
-            <section class="mx-auto max-w-[1100px] px-5 py-8">
-              <h2 class="text-2xl font-bold mb-6">Docker (Recommended)</h2>
+            <section class="mx-auto max-w-[1100px] px-5 py-6">
+              <h2 class="text-2xl font-bold mb-4">Docker (Recommended)</h2>
               <DockerCard client:load dockerTag={latestRelease.dockerTag} />
             </section>
           </Animated>
 
           <Animated client:load delay={0.15}>
-            <section class="mx-auto max-w-[1100px] px-5 py-8">
-              <h2 class="text-2xl font-bold mb-6">Native Binaries</h2>
+            <section class="mx-auto max-w-[1100px] px-5 py-6">
+              <h2 class="text-2xl font-bold mb-4">Native Binaries</h2>
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <PlatformCard
                   client:load
@@ -93,10 +95,10 @@ const formattedDate = latestRelease
                 />
                 <PlatformCard
                   client:load
-                  platform="macOS Intel"
-                  icon="🍎"
+                  platform="Linux ARM64"
+                  icon="🐧"
                   assets={latestRelease.assets}
-                  platformKey="macos-x64"
+                  platformKey="linux-arm64"
                 />
                 <PlatformCard
                   client:load
@@ -110,15 +112,15 @@ const formattedDate = latestRelease
           </Animated>
 
           <Animated client:load delay={0.2}>
-            <section class="mx-auto max-w-[1100px] px-5 py-8">
+            <section class="mx-auto max-w-[1100px] px-5 py-6">
               <h2 class="text-2xl font-bold mb-4">Changelog</h2>
               <div class="rounded-xl border border-white/10 bg-white/5 p-6 prose prose-invert prose-sm max-w-none">
-                <div set:html={latestRelease.changelog.replace(/\n/g, "<br>")} />
+                <div set:html={changelogHtml} />
               </div>
             </section>
           </Animated>
 
-          <section class="mx-auto max-w-[1100px] px-5 py-8">
+          <section class="mx-auto max-w-[1100px] px-5 py-6">
             <div class="text-center">
               <a
                 href={`https://github.com/${latestRelease ? "ferrumc-rs/ferrumc/releases" : "#"}`}
@@ -149,7 +151,7 @@ const formattedDate = latestRelease
     }
   </main>
 
-  <footer class="border-t border-white/10 mt-12 py-5">
+  <footer class="border-t border-white/10 mt-8 py-5">
     <div class="mx-auto max-w-[1100px] px-5 flex items-center justify-between text-neutral-400 text-sm">
       <div>© 2025 FerrumC</div>
       <div class="space-x-3">

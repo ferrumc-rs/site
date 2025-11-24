@@ -3,8 +3,8 @@ interface DockerCardProps {
 }
 
 export default function DockerCard({ dockerTag = "latest" }: DockerCardProps) {
-  const dockerPullCommand = `docker pull ferrumc/ferrumc:${dockerTag}`;
-  const dockerRunCommand = `docker run -p 25565:25565 ferrumc/ferrumc:${dockerTag}`;
+  const dockerPullCommand = `docker pull ghcr.io/ferrumc-rs/ferrumc:${dockerTag}`;
+  const dockerRunCommand = `docker run -p 25565:25565 ghcr.io/ferrumc-rs/ferrumc:${dockerTag}`;
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -55,12 +55,12 @@ export default function DockerCard({ dockerTag = "latest" }: DockerCardProps) {
       </div>
 
       <a
-        href="https://hub.docker.com/r/ferrumc/ferrumc"
+        href="https://github.com/ferrumc-rs/ferrumc/pkgs/container/ferrumc"
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex items-center gap-2 mt-4 text-sm text-orange-500 hover:text-orange-400"
       >
-        View on Docker Hub →
+        View on GitHub Packages →
       </a>
     </div>
   );
