@@ -1,4 +1,4 @@
-import { Container } from 'lucide-react';
+import { Container, Copy } from 'lucide-react';
 
 interface DockerCardProps {
   dockerTag?: string;
@@ -34,7 +34,7 @@ export default function DockerCard({ dockerTag = "latest" }: DockerCardProps) {
               className="px-3 py-2 rounded bg-white/10 hover:bg-white/15 transition-colors text-sm"
               aria-label="Copy pull command"
             >
-              📋
+              <Copy className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -50,7 +50,7 @@ export default function DockerCard({ dockerTag = "latest" }: DockerCardProps) {
               className="px-3 py-2 rounded bg-white/10 hover:bg-white/15 transition-colors text-sm"
               aria-label="Copy run command"
             >
-              📋
+              <Copy className="w-4 h-4" />
             </button>
           </div>
         </div>
