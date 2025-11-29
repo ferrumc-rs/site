@@ -30,7 +30,18 @@ export default async function Changelog() {
 
         {releases.length === 0 ? (
           <div className="text-center py-12 text-neutral-400">
-            <p>No releases found. Check back soon!</p>
+            <p>
+              We are currently working on our first checkpoint. Join our{' '}
+              <Link
+                href="https://discord.gg/qT5J8EMjwk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-orange-600 hover:text-orange-500 underline"
+              >
+                Discord
+              </Link>{' '}
+              to check the progress.
+            </p>
           </div>
         ) : (
           <div className="space-y-4">
@@ -77,6 +88,8 @@ export default async function Changelog() {
                               className="flex items-center gap-1.5 text-sm text-neutral-400 hover:text-white transition-colors"
                             >
                               <Image
+                                width={20}
+                                height={20}
                                 src={release.author.avatar_url}
                                 alt={release.author.login}
                                 className="w-5 h-5 rounded-full"
@@ -131,18 +144,20 @@ export default async function Changelog() {
 
         {/* Footer note */}
         <div className="mt-16 pt-8 border-t border-white/10">
-          <p className="text-neutral-400 text-sm text-center">
-            For more detailed changes, see our{' '}
-            <Link
-              href="https://github.com/ferrumc-rs/ferrumc/releases"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-orange-600 hover:text-orange-500 underline"
-            >
-              GitHub Releases
-            </Link>{' '}
-            page.
-          </p>
+          {releases.length > 0 && (
+            <p className="text-neutral-400 text-sm text-center">
+              For more detailed changes, see our{' '}
+              <Link
+                href="https://github.com/ferrumc-rs/ferrumc/releases"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-orange-600 hover:text-orange-500 underline"
+              >
+                GitHub Releases
+              </Link>{' '}
+              page.
+            </p>
+          )}
         </div>
       </main>
       <Footer />
