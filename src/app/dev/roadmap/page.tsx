@@ -9,16 +9,7 @@ import { HiServer } from 'react-icons/hi';
 import { MdRocketLaunch } from 'react-icons/md';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-
-interface RoadmapItem {
-  id: string;
-  title: string;
-  description: string;
-  status: 'completed' | 'in-progress' | 'planned';
-  icon: React.ElementType;
-  tags: string[];
-  position: { x: number; y: number };
-}
+import { RoadmapItem } from '@/app/lib/types';
 
 const roadmapData: RoadmapItem[] = [
   {
@@ -199,13 +190,7 @@ export default function Roadmap() {
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       transition={{ type: 'spring', stiffness: 300 }}
-                      className={`relative bg-gray-950 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border-2 transition-all duration-300 w-40 sm:w-56 ${
-                        item.status === 'completed'
-                          ? 'border-green-500/60 shadow-green-500/20'
-                          : item.status === 'in-progress'
-                            ? 'border-orange-500/60 shadow-orange-500/20'
-                            : 'border-gray-600/60 shadow-gray-500/20'
-                      } shadow-lg hover:shadow-xl`}
+                      className={`relative bg-gray-950 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border-2 transition-all duration-300 w-40 sm:w-56 ${item.status === 'completed' ? 'border-green-500/60 shadow-green-500/20' : item.status === 'in-progress' ? 'border-orange-500/60 shadow-orange-500/20' : 'border-gray-600/60 shadow-gray-500/20'} shadow-lg hover:shadow-xl`}
                     >
                       {/* Status Badge */}
                       <div
