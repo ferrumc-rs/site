@@ -1,3 +1,5 @@
+import {GitHubRelease} from "@/app/lib/types";
+
 export async function getReleases(): Promise<GitHubRelease[]> {
   const response = await fetch('https://api.github.com/repos/ferrumc-rs/ferrumc/releases', {
     headers: {
