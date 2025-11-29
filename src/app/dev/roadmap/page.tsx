@@ -9,7 +9,7 @@ import { HiServer } from 'react-icons/hi';
 import { MdRocketLaunch } from 'react-icons/md';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-import {RoadmapItem} from "@/app/lib/types";
+import { RoadmapItem } from '@/app/lib/types';
 
 const roadmapData: RoadmapItem[] = [
   {
