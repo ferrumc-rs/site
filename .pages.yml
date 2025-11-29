@@ -1,0 +1,37 @@
+media: public/blogs/media
+
+content:
+  - name: blogs
+    label: Blogs
+    type: collection
+    path: 'public/blogs'
+    view:
+      fields: [ title, published, date ]
+    fields:
+      - name: published
+        label: Published
+        type: boolean
+        default: true
+
+      - name: pinned
+        label: Pinned
+        type: boolean
+        default: false
+
+      - name: date
+        label: Date
+        type: date
+
+      - name: title
+        label: Title
+        type: string
+
+      - name: description
+        label: Description
+        type: string
+        required: false
+
+      - name: body
+        label: Body
+        type: rich-text
+        description: "Main blog content stored as Markdown"
