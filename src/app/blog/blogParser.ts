@@ -1,28 +1,28 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import {marked} from "marked";
-import {Blog} from "@/app/lib/types";
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { marked } from 'marked';
+import { Blog } from '@/app/lib/types';
 
-const blogsDirectory = path.join(process.cwd(), "public", "blogs");
+const blogsDirectory = path.join(process.cwd(), 'public', 'blogs');
 
 export function getAllBlogs(): Blog[] {
   try {
     const files = fs.readdirSync(blogsDirectory);
 
     return files
-      .filter((file) => file.endsWith(".md"))
+      .filter((file) => file.endsWith('.md'))
       .map((filename) => {
         const filePath = path.join(blogsDirectory, filename);
-        const fileContent = fs.readFileSync(filePath, "utf-8");
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
 
-        const {data} = matter(fileContent);
-        const slug = filename.replace(".md", "");
+        const { data } = matter(fileContent);
+        const slug = filename.replace('.md', '');
 
         return {
           title: data.title ?? slug,
-          description: data.description ?? "",
-          date: data.date ?? "Unknown",
+          description: data.description ?? '',
+          date: data.date ?? 'Unknown',
           published: data.published ?? false,
           markdown_path: slug,
           pinned: data.pinned ?? false,
@@ -45,10 +45,11 @@ export function getBlogContent(slug: string) {
 
   if (!fs.existsSync(fullPath)) return null;
 
-  const fileContent = fs.readFileSync(fullPath, "utf-8");
-  const {content} = matter(fileContent);
+  const fileContent = fs.readFileSync(fullPath, 'utf-8');
+  const { content } = matter(fileContent);
 
   return {
-    raw: content, html: marked(content),
+    raw: content,
+    html: marked(content),
   };
 }

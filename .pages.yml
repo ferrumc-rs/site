@@ -6,7 +6,7 @@ content:
     type: collection
     path: 'public/blogs'
     view:
-      fields: [ title, published, date ]
+      fields: [title, published, date]
     fields:
       - name: published
         label: Published
@@ -34,4 +34,4 @@ content:
       - name: body
         label: Body
         type: rich-text
-        description: "Main blog content stored as Markdown"
+        description: 'Main blog content stored as Markdown'

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export type Blog = {
   title: string;
@@ -7,7 +7,7 @@ export type Blog = {
   published: boolean;
   pinned: boolean;
   markdown_path: string;
-}
+};
 
 export type GitHubRelease = {
   tag_name: string;
@@ -20,7 +20,7 @@ export type GitHubRelease = {
     avatar_url: string;
     html_url: string;
   };
-}
+};
 
 export type RoadmapItem = {
   id: string;
@@ -30,4 +30,4 @@ export type RoadmapItem = {
   icon: React.ElementType;
   tags: string[];
   position: { x: number; y: number };
-}
+};
