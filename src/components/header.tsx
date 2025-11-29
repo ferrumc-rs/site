@@ -30,17 +30,17 @@ export default function Header() {
           <a href="/features" className="hover:text-white transition-colors">
             Features
           </a>
-          <a href="/blog" className="hover:text-white transition-colors">
+          <Link href="/blog" className="hover:text-white transition-colors">
             Blog
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://docs.ferrumc.com/"
             target="_blank"
             rel="noreferrer"
             className="hover:text-white transition-colors flex gap-2"
           >
             Documentation
-          </a>
+          </Link>
         </nav>
 
         <a
@@ -87,31 +87,31 @@ export default function Header() {
           }`}
         >
           <div className="rounded-xl border border-white/10 bg-neutral-900/95 backdrop-blur shadow-2xl p-3">
-            <a
+            <Link
               href="/features"
               className="block px-3 py-2 rounded-lg hover:bg-white/10 transition-colors"
             >
               Features
-            </a>
-            <a
+            </Link>
+            <Link
               href="/blog"
               className="block px-3 py-2 rounded-lg hover:bg-white/10 transition-colors"
             >
               Blog
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://docs.ferrumc.com/"
               className="block px-3 py-2 rounded-lg hover:bg-white/10 transition-colors"
             >
               Documentation
-            </a>
+            </Link>
             <div className="h-px my-2 bg-white/10" />
-            <a
+            <Link
               href="https://github.com/ferrumc-rs/ferrumc"
               className="block px-3 py-2 rounded-lg hover:bg-white/10 transition-colors"
             >
               GitHub
-            </a>
+            </Link>
           </div>
         </div>
       </div>
