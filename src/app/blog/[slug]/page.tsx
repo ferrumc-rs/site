@@ -23,8 +23,12 @@ export async function generateMetadata({
   // Not found metadata
   if (!blog) {
     return {
-      title: 'Blog Not Found',
+      title: 'Blog Not Found | FerrumC',
       description: 'This blog post does not exist.',
+      robots: {
+        index: false,
+        follow: true,
+      },
       alternates: {
         canonical: `${SITE_URL}/blog/${slug}`,
       },
@@ -34,41 +38,75 @@ export async function generateMetadata({
   const ogImage = DEFAULT_OG_IMAGE;
   const url = `${SITE_URL}/blog/${slug}`;
 
-  return {
-    title: blog.title,
-    description: blog.description || 'Read this blog post on FerrumC.',
+  const description =
+    blog.description ||
+    `Read about ${blog.title} on FerrumC - High-performance Minecraft server written in Rust.`;
 
-    keywords: ['minecraft', 'ferrumc', 'rust', 'blog', 'server performance'],
+  const tags = [
+    'minecraft',
+    'ferrumc',
+    'rust',
+    'blog',
+    'server performance',
+    'minecraft server',
+    'game development',
+  ];
+
+  return {
+    title: `${blog.title} | FerrumC Blog`,
+    description,
+
+    keywords: tags,
+
+    authors: [{ name: blog.author }],
+
+    creator: blog.author,
+    publisher: 'FerrumC',
 
     alternates: {
       canonical: url,
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
     },
 
     openGraph: {
       type: 'article',
       url,
       title: blog.title,
-      description: blog.description,
+      description,
       siteName: 'FerrumC',
       images: [
         {
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: blog.title,
+          alt: `${blog.title} - FerrumC Blog`,
         },
       ],
       locale: 'en_US',
       publishedTime: blog.date,
+      authors: [blog.author],
+      tags,
     },
 
     twitter: {
       card: 'summary_large_image',
       title: blog.title,
-      description: blog.description,
+      description,
       images: [ogImage],
       site: '@ferrumc',
       creator: '@ferrumc',
+    },
+
+    other: {
+      'article:published_time': blog.date,
+      'article:author': blog.author,
     },
   };
 }
