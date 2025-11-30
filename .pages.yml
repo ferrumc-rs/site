@@ -18,14 +18,21 @@ content:
         type: boolean
         default: false
 
-      - name: date
-        label: Date
-        type: date
-
       - name: title
         label: Title
         type: string
+        required: true
 
+      - name: date
+        label: Date
+        type: date
+        required: true
+        
+      - name: author
+        label: Author
+        type: string
+        required: true
+        
       - name: description
         label: Description
         type: string
