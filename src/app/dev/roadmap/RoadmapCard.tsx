@@ -1,6 +1,6 @@
 import React from 'react';
-import { RoadmapItem } from '@/app/dev/roadmap/interfaces';
 import { StatusBadge, TaskItem } from '@/app/dev/roadmap/extras';
+import { RoadmapItem } from '@/app/lib/types';
 
 export function RoadmapCard({
   item,

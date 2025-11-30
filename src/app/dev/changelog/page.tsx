@@ -173,8 +173,6 @@ export default async function Changelog() {
                                 height={20}
                                 src={release.author.avatar_url}
                                 alt={`${release.author.login}'s avatar`}
-                                width={20}
-                                height={20}
                                 className="rounded-full"
                               />
                               @{release.author.login}
