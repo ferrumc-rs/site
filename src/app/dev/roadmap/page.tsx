@@ -4,8 +4,11 @@ import React from 'react';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { RoadmapCard } from '@/app/dev/roadmap/RoadmapCard';
-import { RoadmapItem } from '@/app/dev/roadmap/interfaces';
 import GradientText from '@/components/text/gradient-text';
+import { RoadmapItem } from '@/app/lib/types';
+import { Metadata } from 'next';
+
+const SITE_URL = 'https://ferrumc.com';
 
 const roadmapData: RoadmapItem[] = [
   {
@@ -168,8 +171,20 @@ const roadmapData: RoadmapItem[] = [
 ];
 
 export default function Roadmap() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'FerrumC Development Roadmap',
+    description: 'Development timeline and feature roadmap for FerrumC',
+    url: `${SITE_URL}/dev/roadmap`,
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header></Header>
       <div className="min-h-screen text-gray-300">
         {/* Background grid */}

@@ -3,10 +3,101 @@ import Footer from '@/components/footer';
 import Image from 'next/image';
 import GradientText from '@/components/text/gradient-text';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+const SITE_URL = 'https://ferrumc.com';
+
+export const metadata: Metadata = {
+  title: 'FerrumC - High-Performance Minecraft Server Written in Rust',
+  description:
+    'FerrumC is a fully multi-threaded Minecraft server implementation written in Rust. Experience lightning-fast world loading, smooth ticks, and low memory usage. Compatible with vanilla Minecraft 1.21.8 clients.',
+
+  keywords: [
+    'minecraft server',
+    'rust minecraft server',
+    'ferrumc',
+    'high performance server',
+    'minecraft rust',
+    'game server',
+    'vanilla minecraft',
+    'minecraft 1.21.8',
+    'multi-threaded server',
+    'fast minecraft server',
+  ],
+
+  alternates: {
+    canonical: SITE_URL,
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+  },
+
+  openGraph: {
+    type: 'website',
+    url: SITE_URL,
+    title: 'FerrumC - High-Performance Minecraft Server',
+    description:
+      'A fully multi-threaded Minecraft server written in Rust. Lightning-fast, memory-efficient, and compatible with vanilla clients.',
+    siteName: 'FerrumC',
+    images: [
+      {
+        url: `${SITE_URL}/images/in_game.png`,
+        width: 1200,
+        height: 630,
+        alt: 'FerrumC Minecraft Server',
+      },
+    ],
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FerrumC - High-Performance Minecraft Server',
+    description: 'A fully multi-threaded Minecraft server written in Rust for optimal performance.',
+    images: [`${SITE_URL}/images/in_game.png`],
+    site: '@ferrumc',
+    creator: '@ferrumc',
+  },
+};
 
 export default function Home() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'FerrumC',
+    applicationCategory: 'Game Server',
+    operatingSystem: 'Cross-platform',
+    description:
+      'A high-performance, multi-threaded Minecraft server implementation written in Rust',
+    url: SITE_URL,
+    downloadUrl: `${SITE_URL}/download`,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5',
+      ratingCount: '1',
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'FerrumC',
+      url: 'https://github.com/ferrumc-rs',
+    },
+    softwareVersion: '1.21.8',
+    programmingLanguage: 'Rust',
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main>
         {/* Hero */}
