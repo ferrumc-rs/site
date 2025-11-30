@@ -17,7 +17,7 @@ Then one day, I suddenly thought, "hmm... i love minecraft so much, why not try 
 
 > "Could anyone help me with the status, ping, pong requests?"
 > 
-> \\- Sweattypalms, September 2023, in the [Minecraft Protocol](https://discord.gg/2yNVPGTh8w) discord server.
+> \- Sweattypalms, September 2023, in the [Minecraft Protocol](https://discord.gg/2yNVPGTh8w) discord server.
 
 ...
 
