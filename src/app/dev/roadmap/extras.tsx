@@ -1,6 +1,6 @@
 import { FaCheck, FaRegCircle } from 'react-icons/fa';
 import { FiLoader } from 'react-icons/fi';
-import { Task } from '@/app/dev/roadmap/interfaces';
+import { Task } from '@/app/lib/types';
 
 export function StatusBadge({
   status,
