@@ -6,7 +6,6 @@ import Footer from '@/components/footer';
 import { RoadmapCard } from '@/app/dev/roadmap/RoadmapCard';
 import GradientText from '@/components/text/gradient-text';
 import { RoadmapItem } from '@/app/lib/types';
-import { Metadata } from 'next';
 
 const SITE_URL = 'https://ferrumc.com';
 

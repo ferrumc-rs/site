@@ -27,12 +27,12 @@ content:
         label: Date
         type: date
         required: true
-        
+
       - name: author
         label: Author
         type: string
         required: true
-        
+
       - name: description
         label: Description
         type: string
