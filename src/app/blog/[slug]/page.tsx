@@ -4,6 +4,74 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
+import { Metadata } from 'next';
+import Image from 'next/image';
+
+const SITE_URL = 'https://ferrumc.com';
+const DEFAULT_OG_IMAGE = `${SITE_URL}/images/in_game.png`;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+
+  const blogs: Blog[] = getAllBlogs();
+  const blog = blogs.find((b) => b.markdown_path === slug);
+
+  // Not found metadata
+  if (!blog) {
+    return {
+      title: 'Blog Not Found',
+      description: 'This blog post does not exist.',
+      alternates: {
+        canonical: `${SITE_URL}/blog/${slug}`,
+      },
+    };
+  }
+
+  const ogImage = DEFAULT_OG_IMAGE;
+  const url = `${SITE_URL}/blog/${slug}`;
+
+  return {
+    title: blog.title,
+    description: blog.description || 'Read this blog post on FerrumC.',
+
+    keywords: ['minecraft', 'ferrumc', 'rust', 'blog', 'server performance'],
+
+    alternates: {
+      canonical: url,
+    },
+
+    openGraph: {
+      type: 'article',
+      url,
+      title: blog.title,
+      description: blog.description,
+      siteName: 'FerrumC',
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: blog.title,
+        },
+      ],
+      locale: 'en_US',
+      publishedTime: blog.date,
+    },
+
+    twitter: {
+      card: 'summary_large_image',
+      title: blog.title,
+      description: blog.description,
+      images: [ogImage],
+      site: '@ferrumc',
+      creator: '@ferrumc',
+    },
+  };
+}
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -53,6 +121,15 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                   day: 'numeric',
                 })}
               </time>
+              -{' '}
+              <Image
+                src={'https://github.com/' + blog.author + '.png'}
+                alt="profile picture"
+                width={16}
+                height={16}
+                className="rounded-xl"
+              />{' '}
+              {blog.author}
             </div>
 
             {blog.description && (

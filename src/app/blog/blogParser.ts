@@ -26,6 +26,7 @@ export function getAllBlogs(): Blog[] {
           published: data.published ?? false,
           markdown_path: slug,
           pinned: data.pinned ?? false,
+          author: data.author ?? '',
         } satisfies Blog;
       })
       .filter((b) => b.published)

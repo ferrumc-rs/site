@@ -1,5 +1,6 @@
 import { Blog } from '@/app/lib/types';
 import { BsPinAngle } from 'react-icons/bs';
+import Image from 'next/image';
 
 export default function BlogCard({ blog }: { blog: Blog }) {
   return (
@@ -27,7 +28,17 @@ export default function BlogCard({ blog }: { blog: Blog }) {
 
         {/* Date + Published Status */}
         <div className="flex items-center gap-3 text-sm text-neutral-400">
-          <span>{new Date(blog.date).toLocaleDateString()}</span>
+          <span className="flex items-center gap-2 text-sm text-neutral-400">
+            {new Date(blog.date).toLocaleDateString()} -{' '}
+            <Image
+              src={'https://github.com/' + blog.author + '.png'}
+              alt="profile picture"
+              width={16}
+              height={16}
+              className="rounded-xl"
+            />{' '}
+            {blog.author}
+          </span>
         </div>
 
         {/* Description */}
