@@ -21,6 +21,4 @@ Then one day, I suddenly thought, "hmm... i love minecraft so much, why not try 
 
 ...
 
-I'll write the rest of the blog later, but yes.
-
-Also both me (Sweattypalms) and ReCore are Co-Founders of this project!
+I'll write the rest of the blog later :)
