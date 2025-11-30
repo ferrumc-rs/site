@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface RoadmapItem {
   id: string;
   title: string;

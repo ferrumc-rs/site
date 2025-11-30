@@ -202,7 +202,6 @@ export default function Roadmap() {
               <RoadmapCard
                 key={item.id}
                 item={item}
-                index={index}
                 status_before={roadmapData[index - 1]?.status}
               />
             ))}

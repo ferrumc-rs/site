@@ -4,11 +4,9 @@ import { StatusBadge, TaskItem } from '@/app/dev/roadmap/extras';
 
 export function RoadmapCard({
   item,
-  index,
   status_before,
 }: {
   item: RoadmapItem;
-  index: number;
   status_before?: string;
 }) {
   const isInProgress = item.status === 'in-progress';
