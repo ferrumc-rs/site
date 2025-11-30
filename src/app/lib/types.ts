@@ -3,6 +3,7 @@ import React from 'react';
 export type Blog = {
   title: string;
   description: string;
+  author: string;
   date: string;
   published: boolean;
   pinned: boolean;
