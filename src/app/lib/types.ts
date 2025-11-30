@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type Blog = {
   title: string;
   description: string;
@@ -28,7 +26,11 @@ export type RoadmapItem = {
   title: string;
   description: string;
   status: 'completed' | 'in-progress' | 'planned';
-  icon: React.ElementType;
-  tags: string[];
-  position: { x: number; y: number };
+  tasks: Task[];
+  date?: string;
+  progress?: number;
+};
+export type Task = {
+  name: string;
+  status: 'completed' | 'in-progress' | 'planned';
 };
