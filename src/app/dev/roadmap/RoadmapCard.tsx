@@ -45,7 +45,10 @@ export function RoadmapCard({
       {/* Card Container */}
       <div className="relative bg-neutral-800/40 backdrop-blur-sm border border-gray-700/50 rounded-xl overflow-hidden hover:border-gray-600/70 transition-all duration-300">
         {/* Header Button */}
-        <button onClick={() => setOpen((o) => !o)} className="w-full text-left p-6 relative">
+        <button
+          onClick={() => setOpen((o) => !o)}
+          className="w-full text-left p-6 relative cursor-pointer focus:outline-none"
+        >
           {/* Status and Meta Info */}
           <div className="flex items-center justify-between mb-4">
             {status_before !== item.status ? (
