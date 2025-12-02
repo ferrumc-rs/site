@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import Image from 'next/image';
+import { ImageWithFallback } from '@/components/layout/BlogPicture';
 
 const SITE_URL = 'https://ferrumc.com';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/images/in_game.png`;
@@ -245,13 +246,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                     {children}
                   </blockquote>
                 ),
-                img: ({ src, alt }) => (
-                  <img
-                    src={src}
-                    alt={alt}
-                    className="rounded-lg border border-white/10 my-8 w-full"
-                  />
-                ),
+                img: ({ src, alt }) => <ImageWithFallback src={src || ''} alt={alt || ''} />,
               }}
             >
               {content?.raw ?? 'No content available'}

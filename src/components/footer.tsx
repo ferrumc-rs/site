@@ -145,7 +145,14 @@ export default function Footer() {
         <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div className="text-sm text-neutral-400">
-              © {new Date().getFullYear()} FerrumC. Licensed under MIT.
+              <Link
+                href="https://github.com/ferrumc-rs/ferrumc/blob/master/LICENSE"
+                className="hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                © {new Date().getFullYear()} FerrumC. Licensed under MIT.
+              </Link>
             </div>
             <div className="text-xs text-neutral-500 max-w-2xl text-left md:text-right">
               This website is not an official Minecraft website and is not associated with Mojang
