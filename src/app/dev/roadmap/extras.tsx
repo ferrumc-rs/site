@@ -51,7 +51,9 @@ export function TaskItem({ task }: { task: Task }) {
   return (
     <div className="flex items-center gap-3 text-gray-400">
       <Icon className={`w-4 h-4 ${iconColor} flex-shrink-0`} />
-      <span className="text-sm">{task.name}</span>
+      <span className={task.status === 'in-progress' ? 'text-white' : 'text-gray-600'}>
+        {task.name}
+      </span>
     </div>
   );
 }
