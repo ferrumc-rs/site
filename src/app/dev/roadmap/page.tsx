@@ -185,7 +185,7 @@ export default function Roadmap() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Header></Header>
-      <div className="min-h-screen text-gray-300">
+      <div className="text-gray-300">
         {/* Background grid */}
         <div className="fixed inset-0 opacity-[0.02] pointer-events-none">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[length:50px_50px]" />
@@ -217,6 +217,7 @@ export default function Roadmap() {
                 key={item.id}
                 item={item}
                 status_before={roadmapData[index - 1]?.status}
+                open_default={index === 0 && true}
               />
             ))}
           </div>

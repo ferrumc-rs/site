@@ -22,18 +22,20 @@ interface RoadmapItem {
 export function RoadmapCard({
   item,
   status_before,
+  open_default = false,
 }: {
   item: RoadmapItem;
   status_before?: string;
+  open_default?: boolean;
 }) {
   const isInProgress = item.status === 'in-progress';
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(open_default);
 
   return (
-    <div className="relative pl-12 pb-16 group">
+    <div className="relative pl-12 pb-3 group">
       {/* Timeline dot */}
       <div
-        className={`absolute left-[2px] top-3 w-3 h-3 rounded-full ring-4 ring-neutral-900 transition-all ${
+        className={`absolute left-[2px] w-3 h-3 rounded-full ring-4 ring-neutral-900 transition-all ${
           item.status === 'completed'
             ? 'bg-emerald-500'
             : item.status === 'in-progress'
@@ -50,20 +52,12 @@ export function RoadmapCard({
           className="w-full text-left p-6 relative cursor-pointer focus:outline-none"
         >
           {/* Status and Meta Info */}
-          <div className="flex items-center justify-between mb-4">
-            {status_before !== item.status ? (
-              <StatusBadge status={item.status} />
-            ) : (
-              <div className="w-24" />
+          <div className="flex items-center justify-between">
+            {status_before !== item.status && (
+              <span className="pb-2">
+                <StatusBadge status={item.status} />
+              </span>
             )}
-
-            <div className="flex items-center gap-3">
-              {item.date && <span className="text-xs text-gray-500 font-mono">{item.date}</span>}
-
-              {isInProgress && item.progress !== undefined && (
-                <span className="text-xs text-orange-400 font-mono">{item.progress}%</span>
-              )}
-            </div>
           </div>
 
           {/* Title */}
@@ -86,13 +80,14 @@ export function RoadmapCard({
 
             {/* Progress Bar for In-Progress Items */}
             {isInProgress && item.progress !== undefined && (
-              <div className="mb-6">
-                <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+              <div className="mb-6 flex flex-row items-center justify-between gap-4">
+                <div className="h-2 bg-gray-800 rounded-full overflow-hidden grow">
                   <div
                     className="h-full bg-gradient-to-r from-orange-500 to-orange-400 transition-all duration-500"
                     style={{ width: `${item.progress}%` }}
                   />
                 </div>
+                <span className="text-xs text-orange-400 font-mono mx-4">{item.progress}%</span>
               </div>
             )}
 
