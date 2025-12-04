@@ -21,7 +21,6 @@ export async function generateMetadata({
   const blogs: Blog[] = getAllBlogs();
   const blog = blogs.find((b) => b.markdown_path === slug);
 
-  // Not found metadata
   if (!blog) {
     return {
       title: 'Blog Not Found | FerrumC',
@@ -56,11 +55,9 @@ export async function generateMetadata({
   return {
     title: `${blog.title} | FerrumC Blog`,
     description,
-
     keywords: tags,
 
     authors: [{ name: blog.author }],
-
     creator: blog.author,
     publisher: 'FerrumC',
 
@@ -126,7 +123,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4">Blog Not Found</h1>
             <p className="text-neutral-400 mb-8">
-              The blog post you&#39;re looking for doesn&#39;t exist.
+              The blog post you&apos;re looking for doesn&apos;t exist.
             </p>
             <Link
               href="/blog"
@@ -146,9 +143,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
+
       <main className="flex-1">
         <article className="mx-auto max-w-4xl px-6 py-12">
-          {/* Blog Header */}
+          {/* Header */}
           <header className="mb-12 border-b border-white/10 pb-8">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">{blog.title}</h1>
 
@@ -176,7 +174,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             )}
           </header>
 
-          {/* Blog Content with react-markdown */}
+          {/* Markdown */}
           <div className="markdown-content">
             <ReactMarkdown
               components={{
@@ -226,7 +224,6 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                 ),
                 em: ({ children }) => <em className="text-neutral-200 italic">{children}</em>,
                 code: ({ children, className }) => {
-                  // Check if this is an inline code or code block
                   const isInline = !className;
                   return isInline ? (
                     <code className="text-orange-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">
@@ -264,6 +261,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           </div>
         </article>
       </main>
+
       <Footer />
     </div>
   );

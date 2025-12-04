@@ -69,7 +69,6 @@ export default function Blog() {
   const publishedBlogs = blogs.filter((blog) => blog.published);
   const hasBlogs = publishedBlogs.length > 0;
 
-  // JSON-LD structured data
   const jsonLd = hasBlogs
     ? {
         '@context': 'https://schema.org',
@@ -108,13 +107,13 @@ export default function Blog() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
       <Header />
+
       <main className="flex-1">
         {hasBlogs ? (
           <section className="mx-auto max-w-4xl px-6 py-12">
@@ -155,6 +154,7 @@ export default function Blog() {
                 >
                   Back to Home
                 </Link>
+
                 <Link
                   className="inline-flex items-center rounded-lg bg-white/10 px-6 py-3 font-semibold hover:bg-white/15 transition-all duration-150 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
                   href="https://github.com/ferrumc-rs/ferrumc"
@@ -168,6 +168,7 @@ export default function Blog() {
           </section>
         )}
       </main>
+
       <Footer />
     </div>
   );

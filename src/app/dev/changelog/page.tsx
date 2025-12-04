@@ -1,10 +1,10 @@
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-import Link from 'next/link';
 import { getReleases } from '@/app/dev/changelog/releases';
 import { parseReleaseBody } from '@/app/dev/changelog/markdown';
 import Collapsible from '@/components/layout/collapsable';
 import Image from 'next/image';
+import Script from 'next/script';
 import { Metadata } from 'next';
 
 const SITE_URL = 'https://ferrumc.com';
@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   title: 'Changelog | FerrumC - Release History & Updates',
   description:
     'Track the evolution of FerrumC with our complete changelog. View all notable changes, new features, bug fixes, and improvements to our high-performance Minecraft server.',
-
   keywords: [
     'ferrumc changelog',
     'minecraft server updates',
@@ -23,16 +22,13 @@ export const metadata: Metadata = {
     'rust minecraft server',
     'ferrumc releases',
   ],
-
   alternates: {
     canonical: `${SITE_URL}/dev/changelog`,
   },
-
   robots: {
     index: true,
     follow: true,
   },
-
   openGraph: {
     type: 'website',
     url: `${SITE_URL}/dev/changelog`,
@@ -48,7 +44,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-
   twitter: {
     card: 'summary_large_image',
     title: 'Changelog | FerrumC',
@@ -68,6 +63,12 @@ const typeLabels = {
 
 export default async function Changelog() {
   const releases = await getReleases();
+
+  // Pre-parse releases for improved SSR performance
+  const parsedReleases = releases.map((r) => ({
+    ...r,
+    parsed: parseReleaseBody({ body: r.body }),
+  }));
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -90,11 +91,13 @@ export default async function Changelog() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {/* SEO Structured Data */}
+      <Script id="changelog-jsonld" type="application/ld+json">
+        {JSON.stringify(jsonLd)}
+      </Script>
+
       <Header />
+
       <main className="mx-auto max-w-[1200px] px-5 py-16">
         <header className="mb-12">
           <h1 className="text-4xl font-extrabold mb-4">Changelog</h1>
@@ -103,143 +106,124 @@ export default async function Changelog() {
           </p>
         </header>
 
-        {releases.length === 0 ? (
+        {parsedReleases.length === 0 ? (
           <div className="text-center py-12 text-neutral-400">
             <p>
               We are currently working on our first checkpoint. Join our{' '}
-              <Link
+              <a
                 href="https://discord.gg/qT5J8EMjwk"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-orange-600 hover:text-orange-500 underline"
               >
                 Discord
-              </Link>{' '}
+              </a>{' '}
               to check the progress.
             </p>
           </div>
         ) : (
-          <div className="space-y-4">
-            {releases.map((release) => {
-              const changes = parseReleaseBody({ body: release.body });
-
-              return (
-                <article
-                  key={release.tag_name}
-                  className="relative grid grid-cols-4 bg-white/5 border border-white/10 rounded-lg p-6 text-sm text-neutral-300 leading-relaxed"
-                  itemScope
-                  itemType="https://schema.org/SoftwareVersion"
-                >
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="flex-1 pt-1">
-                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
-                        <div>
-                          <h2 className="text-2xl font-bold">
-                            <Link
-                              href={release.html_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="hover:text-orange-500 transition-colors"
-                              itemProp="version"
-                            >
-                              {release.tag_name}
-                            </Link>
-                            {release.name && release.name !== release.tag_name && (
-                              <span className="text-neutral-400 font-normal ml-3">
-                                - {release.name}
-                              </span>
-                            )}
-                          </h2>
-                          <div className="flex items-center gap-3 mt-1">
-                            <time
-                              className="text-sm text-neutral-400"
-                              dateTime={release.published_at}
-                              itemProp="datePublished"
-                            >
-                              {new Date(release.published_at).toLocaleDateString('en-US', {
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric',
-                              })}
-                            </time>
-                            <Link
-                              href={release.author.html_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-1.5 text-sm text-neutral-400 hover:text-white transition-colors"
-                            >
-                              <Image
-                                width={20}
-                                height={20}
-                                src={release.author.avatar_url}
-                                alt={`${release.author.login}'s avatar`}
-                                className="rounded-full"
-                              />
-                              @{release.author.login}
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="ml-14 space-y-6 col-span-3">
-                    {changes.preamble.length > 0 ? (
-                      <div>
-                        <p className="mb-4 pb-4 pt-2 text-sm text-neutral-300 leading-relaxed">
-                          {changes.preamble}
-                        </p>
-                      </div>
-                    ) : null}
-
-                    {changes.categories.length > 0 ? (
-                      changes.categories.map((changeGroup, groupIndex) => (
-                        <div key={groupIndex}>
-                          <Collapsible title={typeLabels[changeGroup.type]}>
-                            {changeGroup.items.map((item, itemIndex) => (
-                              <li
-                                key={itemIndex}
-                                className="flex items-start gap-2 text-neutral-300"
-                              >
-                                <span
-                                  className="text-neutral-500 mt-1.5 text-center align-middle"
-                                  aria-hidden="true"
-                                >
-                                  &#8226;
-                                </span>
-                                <span className="mt-1.5 text-center align-middle">{item}</span>
-                              </li>
-                            ))}
-                          </Collapsible>
-                        </div>
-                      ))
-                    ) : (
-                      <p className="text-neutral-400 italic">
-                        {release.body || 'No release notes provided.'}
-                      </p>
+          <div className="space-y-6">
+            {parsedReleases.map((release) => (
+              <article
+                key={release.tag_name}
+                itemScope
+                itemType="https://schema.org/SoftwareVersion"
+                className="grid grid-cols-4 gap-6 bg-white/5 border border-white/10 rounded-lg p-6 text-sm text-neutral-300 leading-relaxed"
+              >
+                {/* LEFT COLUMN — Version Info */}
+                <div className="col-span-1">
+                  <h2 className="text-2xl font-bold" itemProp="version">
+                    <a
+                      href={release.html_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-orange-500 transition-colors"
+                    >
+                      {release.tag_name}
+                    </a>
+                    {release.name && release.name !== release.tag_name && (
+                      <span className="text-neutral-400 font-normal block mt-1 text-base">
+                        {release.name}
+                      </span>
                     )}
-                  </div>
-                </article>
-              );
-            })}
+                  </h2>
+
+                  <time
+                    className="block text-sm text-neutral-400 mt-2"
+                    dateTime={release.published_at}
+                    itemProp="datePublished"
+                  >
+                    {new Date(release.published_at).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </time>
+
+                  <a
+                    href={release.author?.html_url ?? '#'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-neutral-400 hover:text-white mt-3"
+                  >
+                    <Image
+                      loading="lazy"
+                      width={24}
+                      height={24}
+                      src={release.author?.avatar_url ?? '/images/default-avatar.png'}
+                      alt={release.author?.login ?? 'Unknown user'}
+                      className="rounded-full"
+                    />
+                    @{release.author?.login ?? 'unknown'}
+                  </a>
+                </div>
+
+                {/* RIGHT COLUMN — Changes */}
+                <div className="col-span-3 space-y-6">
+                  {/* Optional preamble text */}
+                  {release.parsed.preamble && (
+                    <p className="text-neutral-300">{release.parsed.preamble}</p>
+                  )}
+
+                  {/* Change categories */}
+                  {release.parsed.categories.length > 0 ? (
+                    release.parsed.categories.map((group, i) => (
+                      <Collapsible key={i} title={typeLabels[group.type]}>
+                        {group.items.map((item, index) => (
+                          <li key={index} className="flex items-start gap-2 text-neutral-300">
+                            <span className="text-neutral-500 mt-1.5">&#8226;</span>
+                            <span className="mt-1.5">{item}</span>
+                          </li>
+                        ))}
+                      </Collapsible>
+                    ))
+                  ) : (
+                    <p className="text-neutral-400 italic">
+                      {release.body || 'No release notes provided.'}
+                    </p>
+                  )}
+                </div>
+              </article>
+            ))}
           </div>
         )}
 
         <footer className="mt-16 pt-8 border-t border-white/10">
           <p className="text-neutral-400 text-sm text-center">
             For more detailed changes, see our{' '}
-            <Link
+            <a
               href="https://github.com/ferrumc-rs/ferrumc/releases"
               target="_blank"
               rel="noopener noreferrer"
               className="text-orange-600 hover:text-orange-500 underline"
             >
               GitHub Releases
-            </Link>{' '}
+            </a>{' '}
             page.
           </p>
         </footer>
       </main>
+
       <Footer />
     </>
   );

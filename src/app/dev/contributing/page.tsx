@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import GradientText from '@/components/text/gradient-text';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 
@@ -54,11 +53,11 @@ export default function Contributing() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Header />
-      <main className="max-w-4xl mx-auto shadow-lg rounded-xl p-8">
+      <main className="max-w-4xl mx-auto shadow-lg rounded-lg p-8">
         <article>
           <header>
-            <h1 className="text-4xl font-bold mb-6">Contributing</h1>
-            <p className="mb-4">
+            <h1 className="text-4xl font-headline font-bold mb-6 tracking-tight">Contributing</h1>
+            <p className="mb-4 text-muted font-body">
               When contributing to this repository, you&#39;ll have more luck with getting PRs
               approved if you come chat with us in the Discord server and let us know about what you
               are fixing/adding. Keep in mind that clippy, rustfmt and cargo-audit are enforced on
@@ -67,8 +66,10 @@ export default function Contributing() {
           </header>
 
           <section>
-            <h2 className="text-3xl font-semibold mt-8 mb-4">Pull Request Process</h2>
-            <ol className="list-decimal ml-6 space-y-2">
+            <h2 className="text-3xl font-headline font-semibold mt-8 mb-4 tracking-tight">
+              Pull Request Process
+            </h2>
+            <ol className="list-decimal ml-6 space-y-2 text-muted font-body">
               <li>
                 Make sure all tests and lints pass. PRs that don&#39;t pass CI will be rejected if
                 your code is the cause of the failing tests/lints.
@@ -84,57 +85,97 @@ export default function Contributing() {
               <li>Check a 3rd time.</li>
               <li>
                 Check that Clippy passes with no issues:{' '}
-                <GradientText>cargo clippy --all-targets -- -Dwarnings</GradientText>
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  cargo clippy --all-targets -- -Dwarnings
+                </code>
               </li>
               <li>
-                Check that Rustfmt passes: <GradientText>cargo fmt --all -- --check</GradientText>
+                Check that Rustfmt passes:{' '}
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  cargo fmt --all -- --check
+                </code>
               </li>
               <li>
-                Check that Cargo-audit passes: <GradientText>cargo audit</GradientText>
+                Check that Cargo-audit passes:{' '}
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  cargo audit
+                </code>
               </li>
               <li>Submit PR.</li>
             </ol>
           </section>
 
           <section>
-            <h2 className="text-3xl font-semibold mt-8 mb-4">Project Specific Guidelines</h2>
-            <p className="mb-4">Just some rules to try to keep the repo nice and organized.</p>
+            <h2 className="text-3xl font-headline font-semibold mt-8 mb-4 tracking-tight">
+              Project Specific Guidelines
+            </h2>
+            <p className="mb-4 text-muted font-body">
+              Just some rules to try to keep the repo nice and organized.
+            </p>
 
-            <h3 className="text-2xl font-semibold mt-6 mb-2">Branches</h3>
+            <h3 className="text-2xl font-headline font-semibold mt-6 mb-2 tracking-tight">
+              Branches
+            </h3>
 
-            <h4 className="text-xl font-semibold mt-4 mb-1 font-mono">master</h4>
-            <p className="mb-3">
+            <h4 className="text-xl font-semibold mt-4 mb-1 font-code text-molten">master</h4>
+            <p className="mb-3 text-muted font-body">
               This is the main branch. All PRs should be made to this branch. It contains completed
               features.
             </p>
 
-            <h4 className="text-xl font-semibold mt-4 mb-1 font-mono">feature/feature-name</h4>
-            <p className="mb-3">
-              For developing a feature, branched off of <code>master</code>.
+            <h4 className="text-xl font-semibold mt-4 mb-1 font-code text-molten">
+              feature/feature-name
+            </h4>
+            <p className="mb-3 text-muted font-body">
+              For developing a feature, branched off of{' '}
+              <code className="font-code text-forged bg-surface px-2 py-1 rounded text-sm">
+                master
+              </code>
+              .
             </p>
 
-            <h4 className="text-xl font-semibold mt-4 mb-1 font-mono">fix/fixed-thing</h4>
-            <p className="mb-3">
-              For fixing bugs, branched off of <code>master</code>.
+            <h4 className="text-xl font-semibold mt-4 mb-1 font-code text-molten">
+              fix/fixed-thing
+            </h4>
+            <p className="mb-3 text-muted font-body">
+              For fixing bugs, branched off of{' '}
+              <code className="font-code text-forged bg-surface px-2 py-1 rounded text-sm">
+                master
+              </code>
+              .
             </p>
 
-            <h4 className="text-xl font-semibold mt-4 mb-1 font-mono">rework/refactored-thing</h4>
-            <p className="mb-3">
-              Refactoring code. PR goes to <code>master</code>.
+            <h4 className="text-xl font-semibold mt-4 mb-1 font-code text-molten">
+              rework/refactored-thing
+            </h4>
+            <p className="mb-3 text-muted font-body">
+              Refactoring code. PR goes to{' '}
+              <code className="font-code text-forged bg-surface px-2 py-1 rounded text-sm">
+                master
+              </code>
+              .
             </p>
 
-            <h4 className="text-xl font-semibold mt-4 mb-1 font-mono">housekeeping</h4>
-            <p className="mb-3">For repo-related updates such as README or CI updates.</p>
+            <h4 className="text-xl font-semibold mt-4 mb-1 font-code text-molten">housekeeping</h4>
+            <p className="mb-3 text-muted font-body">
+              For repo-related updates such as README or CI updates.
+            </p>
 
-            <h4 className="text-xl font-semibold mt-4 mb-1 font-mono">docs</h4>
-            <p className="mb-3">
-              For documentation-only changes. Branched from <code>master</code>.
+            <h4 className="text-xl font-semibold mt-4 mb-1 font-code text-molten">docs</h4>
+            <p className="mb-3 text-muted font-body">
+              For documentation-only changes. Branched from{' '}
+              <code className="font-code text-forged bg-surface px-2 py-1 rounded text-sm">
+                master
+              </code>
+              .
             </p>
           </section>
 
           <section>
-            <h3 className="text-2xl font-semibold mt-6 mb-3">Project Layout</h3>
-            <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-auto text-sm">
+            <h3 className="text-2xl font-headline font-semibold mt-6 mb-3 tracking-tight">
+              Project Layout
+            </h3>
+            <pre className="bg-void text-main p-4 rounded-lg overflow-auto text-sm font-code border border-surface">
               <code>
                 +---.etc | Non-code files <br />
                 +---.github | GitHub specific files
@@ -174,48 +215,94 @@ export default function Contributing() {
               </code>
             </pre>
 
-            <p className="mt-4">
+            <p className="mt-4 text-muted font-body">
               If you add a new directory, please add it to the above list along with its purpose.
             </p>
           </section>
 
           <section>
-            <h3 className="text-2xl font-semibold mt-6 mb-3"> Code Rules </h3>
-            <ul className="list-disc ml-6 space-y-2">
+            <h3 className="text-2xl font-headline font-semibold mt-6 mb-3 tracking-tight">
+              Code Rules
+            </h3>
+            <ul className="list-disc ml-6 space-y-2 text-muted font-body">
               <li>
-                Tests that only generate/dump data must be <GradientText>#[ignore]</GradientText>d.
+                Tests that only generate/dump data must be{' '}
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  #[ignore]
+                </code>
+                d.
               </li>
               <li>No absolute paths.</li>
               <li>
-                Avoid chaining <GradientText>../</GradientText>; use{' '}
-                <GradientText>get_root_path()</GradientText> instead.
+                Avoid chaining{' '}
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  ../
+                </code>
+                ; use{' '}
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  get_root_path()
+                </code>{' '}
+                instead.
               </li>
               <li>
-                No lazy <GradientText>unwrap()</GradientText>; prefer{' '}
-                <GradientText>expect()</GradientText> with detailed messages.
+                No lazy{' '}
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  unwrap()
+                </code>
+                ; prefer{' '}
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  expect()
+                </code>{' '}
+                with detailed messages.
               </li>
               <li>Avoid unnecessary cloning.</li>
               <li>
-                Add new dependencies to the workspace <GradientText>Cargo.toml</GradientText>.
+                Add new dependencies to the workspace{' '}
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  Cargo.toml
+                </code>
+                .
               </li>
               <li>Major features should be added as new crates.</li>
               <li>
-                New sub-crates must define <GradientText>thiserror</GradientText>-based error types.
+                New sub-crates must define{' '}
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  thiserror
+                </code>
+                -based error types.
               </li>
               <li>Use Clippy to ensure no lint errors.</li>
               <li>Use Rustfmt to ensure formatting.</li>
               <li>
-                Prefer <GradientText>#[expect]</GradientText> over{' '}
-                <GradientText>#[allow]</GradientText>.
+                Prefer{' '}
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  #[expect]
+                </code>{' '}
+                over{' '}
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  #[allow]
+                </code>
+                .
               </li>
               <li>
-                Use <GradientText>#[cfg(test)]</GradientText> where appropriate.
+                Use{' '}
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  #[cfg(test)]
+                </code>{' '}
+                where appropriate.
               </li>
               <li>Add documentation where applicable.</li>
               <li>Unsafe code must be documented and justified.</li>
               <li>
-                No IDE folders like <GradientText>.vscode</GradientText> or{' '}
-                <GradientText>.idea</GradientText>.
+                No IDE folders like{' '}
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  .vscode
+                </code>{' '}
+                or{' '}
+                <code className="font-code text-molten bg-surface px-2 py-1 rounded text-sm">
+                  .idea
+                </code>
+                .
               </li>
               <li>Add tests for new features.</li>
               <li>Add tests that reproduce bugs when fixing them.</li>
@@ -225,8 +312,10 @@ export default function Contributing() {
           </section>
 
           <section>
-            <h2 className="text-3xl font-semibold mt-8 mb-4">Notes on Formatting</h2>
-            <p className="mb-4">
+            <h2 className="text-3xl font-headline font-semibold mt-8 mb-4 tracking-tight">
+              Notes on Formatting
+            </h2>
+            <p className="mb-4 text-muted font-body">
               Automatic formatting is highly recommended to avoid large clippy fixes at the end of
               development.
             </p>

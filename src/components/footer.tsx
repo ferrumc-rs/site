@@ -82,7 +82,6 @@ export default function Footer() {
               A fully multi-threaded Minecraft server built in Rust for maximum performance.
             </p>
 
-            {/* Social icons */}
             <div className="flex gap-3">
               <a
                 href="https://github.com/ferrumc-rs/ferrumc"
@@ -155,8 +154,7 @@ export default function Footer() {
               </Link>
             </div>
             <div className="text-xs text-neutral-500 max-w-2xl text-left md:text-right">
-              This website is not an official Minecraft website and is not associated with Mojang
-              Studios or Microsoft.
+              This website is not affiliated with Mojang Studios or Microsoft.
             </div>
           </div>
         </div>

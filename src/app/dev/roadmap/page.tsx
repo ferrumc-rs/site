@@ -184,8 +184,8 @@ export default function Roadmap() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Header></Header>
-      <div className="text-gray-300">
+      <Header />
+      <div className="text-muted">
         {/* Background grid */}
         <div className="fixed inset-0 opacity-[0.02] pointer-events-none">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[length:50px_50px]" />
@@ -194,14 +194,16 @@ export default function Roadmap() {
         <div className="relative max-w-4xl mx-auto px-6 py-16">
           {/* Header */}
           <div className="text-center mb-20">
-            <h1 className="text-5xl md:text-7xl font-bold mb-4">
-              <span className="text-white">The Path to</span>
+            <h1 className="text-5xl md:text-7xl font-headline font-bold mb-4 tracking-tight">
+              <span className="text-main">The Path to</span>
               <br />
               <GradientText>Performance</GradientText>
-              <span className="text-white">.</span>
+              <span className="text-main">.</span>
             </h1>
-            <p className="text-gray-500 text-lg mt-6">Multithreaded. Memory safe. Blazing fast.</p>
-            <p className="text-gray-600 text-sm">
+            <p className="text-muted text-lg mt-6 font-body">
+              Multithreaded. Memory safe. Blazing fast.
+            </p>
+            <p className="text-muted/70 text-sm font-body">
               Tracking the development of the next-gen Minecraft server.
             </p>
           </div>
@@ -209,7 +211,7 @@ export default function Roadmap() {
           {/* Timeline */}
           <div className="relative">
             {/* Vertical line */}
-            <div className="absolute left-[6px] top-2.5 bottom-0 w-[2px] bg-gradient-to-b from-emerald-500 via-orange-500 to-gray-700" />
+            <div className="absolute left-[6px] top-2.5 bottom-0 w-[2px] bg-gradient-to-b from-forged via-molten to-muted/50" />
 
             {/* Roadmap items */}
             {roadmapData.map((item, index) => (
@@ -223,7 +225,7 @@ export default function Roadmap() {
           </div>
         </div>
       </div>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 }

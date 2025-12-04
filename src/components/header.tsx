@@ -12,6 +12,7 @@ export default function Header() {
   return (
     <header className="h-16">
       <div className="mx-auto max-w-[1100px] px-5 h-full grid grid-cols-[auto_1fr_auto] items-center gap-4 relative">
+        {/* Logo and brand */}
         <Link href="/" className="flex items-center gap-1 md:gap-2">
           <Image
             src="/images/logo.png"
@@ -26,6 +27,7 @@ export default function Header() {
           </span>
         </Link>
 
+        {/* Desktop navigation */}
         <nav className="hidden md:flex justify-start gap-3 ml-2 text-sm text-neutral-400">
           <a href="/features" className="hover:text-white transition-colors">
             Features
@@ -43,6 +45,7 @@ export default function Header() {
           </Link>
         </nav>
 
+        {/* GitHub button (desktop) */}
         <a
           className="hidden sm:inline-flex items-center rounded-lg bg-white/10 px-4 py-2 font-semibold hover:bg-white/15 justify-self-end transition-colors"
           href="https://github.com/ferrumc-rs/ferrumc"
@@ -50,7 +53,7 @@ export default function Header() {
           Contribute on GitHub
         </a>
 
-        {/* Hamburger button */}
+        {/* Hamburger button (mobile) */}
         <button
           onClick={toggleMenu}
           aria-controls="mobile-menu"
