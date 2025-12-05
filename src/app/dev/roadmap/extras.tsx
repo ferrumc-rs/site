@@ -21,7 +21,7 @@ export function StatusBadge({
     },
     planned: {
       label: 'PLANNED',
-      className: 'bg-muted/10 text-muted border-muted/30',
+      className: 'bg-void/50 text-muted border-gray-800/30',
     },
     none: {
       label: '',

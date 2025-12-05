@@ -121,7 +121,7 @@ export default function Home() {
                   Download
                 </a>
                 <a
-                  className="inline-flex items-center rounded-md bg-surface px-4 py-2 font-body font-semibold text-main hover:bg-surface/80 border border-muted/20 transition-all duration-150 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+                  className="inline-flex items-center rounded-md bg-surface px-4 py-2 font-body font-semibold text-main hover:bg-surface/80 border border-gray-800 transition-all duration-150 ease-in-out hover:border-molten hover:text-molten hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
                   href="https://github.com/ferrumc-rs/ferrumc"
                 >
                   View on GitHub
@@ -268,7 +268,7 @@ export default function Home() {
             target="_blank"
             rel="noreferrer"
             id="github"
-            className="inline-flex items-center rounded-lg bg-surface px-5 py-3 font-body font-semibold text-main hover:bg-surface/80 border border-muted/20 transition-all duration-150 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+            className="inline-flex items-center rounded-lg bg-surface px-5 py-3 font-body font-semibold text-main hover:bg-surface/80 border border-gray-800 hover:border-molten hover:text-molten transition-all duration-150 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
           >
             View on GitHub
           </Link>

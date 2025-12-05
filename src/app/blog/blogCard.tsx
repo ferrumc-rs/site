@@ -6,7 +6,7 @@ export default function BlogCard({ blog }: { blog: Blog }) {
   return (
     <div
       className="
-      p-6 rounded-lg border border-muted/30
+      p-6 rounded-lg border border-gray-800/70
       bg-surface/50 backdrop-blur-sm
       hover:bg-surface/70 transition
       hover:-translate-y-1 hover:shadow-xl
@@ -16,7 +16,7 @@ export default function BlogCard({ blog }: { blog: Blog }) {
       <div className="flex flex-col gap-3">
         {/* Pinned */}
         {blog.pinned && (
-          <div className="flex flex-row gap-3 align-items-center items-center bg-surface/50 border border-muted/30 rounded-lg w-fit px-4 -my-2">
+          <div className="flex flex-row gap-3 align-items-center items-center bg-surface/50 border border-gray-800 rounded-lg w-fit px-4 -my-2">
             <BsPinAngle size={10} className="text-molten" />
             <div className="text-sm font-body text-muted">Pinned Post</div>
           </div>

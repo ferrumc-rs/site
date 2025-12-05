@@ -44,7 +44,7 @@ export function RoadmapCard({
       />
 
       {/* Card Container */}
-      <div className="relative bg-surface/40 backdrop-blur-sm border border-muted/30 rounded-lg overflow-hidden hover:border-muted/50 transition-all duration-300">
+      <div className="relative bg-surface/40 backdrop-blur-sm border border-gray-800/30 rounded-lg overflow-hidden hover:border-gray-800/50 transition-all duration-300">
         {/* Header Button */}
         <button
           onClick={() => setOpen((o) => !o)}
@@ -75,7 +75,7 @@ export function RoadmapCard({
 
         {/* Expandable Content */}
         {open && (
-          <div className="px-6 pb-6 border-t border-muted/20 pt-6">
+          <div className="px-6 pb-6 border-t border-gray-800/20 pt-6">
             {/* Description */}
             <p className="text-muted leading-relaxed mb-6 font-body">{item.description}</p>
 
@@ -94,7 +94,7 @@ export function RoadmapCard({
 
             {/* Tasks - In Progress View */}
             {isInProgress && item.tasks.length > 0 && (
-              <div className="bg-void/50 border border-surface rounded-lg p-5">
+              <div className="bg-void/50 border border-gray-800 rounded-lg p-5">
                 <div className="space-y-3">
                   {item.tasks.map((task, idx) => (
                     <TaskItem key={idx} task={task} />
@@ -109,7 +109,7 @@ export function RoadmapCard({
                 {item.tasks.map((task, idx) => (
                   <span
                     key={idx}
-                    className="text-xs px-3 py-1 rounded-full bg-surface/50 text-muted border border-muted/30 font-body"
+                    className="text-xs px-3 py-1 rounded-full bg-surface/50 text-muted border border-gray-800 font-body"
                   >
                     {task.name}
                   </span>
