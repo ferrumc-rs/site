@@ -12,16 +12,16 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: '22'
-          cache: 'npm'
+          cache: 'yarn'
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
 
       - name: Run ESLint
-        run: npx eslint .
+        run: yarn eslint .
 
       - name: Check Prettier formatting
-        run: npx prettier --check .
+        run: yarn prettier --check .
 
       - name: TypeScript type check
-        run: npx tsc --noEmit
+        run: yarn tsc --noEmit
