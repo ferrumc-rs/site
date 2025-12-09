@@ -5,180 +5,180 @@
 @import 'tailwindcss/utilities.css' layer(utilities);
 
 @theme {
-    --a-delay: 50ms;
+  --a-delay: 50ms;
 
-    /* ==================== FERRUMC EMBER PALETTE ==================== */
-    /* Background Colors */
-    --color-void: #0f0f0f;
-    --color-surface: #1a1a1a;
+  /* ==================== FERRUMC EMBER PALETTE ==================== */
+  /* Background Colors */
+  --color-void: #0f0f0f;
+  --color-surface: #1a1a1a;
 
-    /* Brand Colors */
-    --color-molten: #ff6b35;
-    --color-rust: #c44900;
+  /* Brand Colors */
+  --color-molten: #ff6b35;
+  --color-rust: #c44900;
 
-    /* Status Colors */
-    --color-forged: #00c896;
-    --color-slag: #ff4545;
+  /* Status Colors */
+  --color-forged: #00c896;
+  --color-slag: #ff4545;
 
-    /* Text Colors */
-    --color-text-main: #ffffff;
-    --color-text-muted: #a0a0a0;
+  /* Text Colors */
+  --color-text-main: #ffffff;
+  --color-text-muted: #a0a0a0;
 
-    /* ==================== TYPOGRAPHY STACK ==================== */
-    /* Font Families */
-    --font-family-headline: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-    --font-family-body: 'Poppins', system-ui, -apple-system, sans-serif;
-    --font-family-code: 'JetBrains Mono', 'Courier New', monospace;
+  /* ==================== TYPOGRAPHY STACK ==================== */
+  /* Font Families */
+  --font-family-headline: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-family-body: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-family-code: 'JetBrains Mono', 'Courier New', monospace;
 
-    /* Font Weights */
-    --font-weight-headline-bold: 700;
-    --font-weight-headline-medium: 500;
-    --font-weight-body-regular: 400;
-    --font-weight-body-medium: 500;
-    --font-weight-body-semibold: 600;
-    --font-weight-code-regular: 400;
-    --font-weight-code-medium: 500;
+  /* Font Weights */
+  --font-weight-headline-bold: 700;
+  --font-weight-headline-medium: 500;
+  --font-weight-body-regular: 400;
+  --font-weight-body-medium: 500;
+  --font-weight-body-semibold: 600;
+  --font-weight-code-regular: 400;
+  --font-weight-code-medium: 500;
 
-    /* Letter Spacing */
-    --letter-spacing-tight: -0.02em; /* For Space Grotesk headlines */
-    --letter-spacing-wide: 0.05em;
-    --letter-spacing-wider: 0.1em;
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.02em; /* For Space Grotesk headlines */
+  --letter-spacing-wide: 0.05em;
+  --letter-spacing-wider: 0.1em;
 
-    /* ==================== SPACING & SIZING ==================== */
-    --radius-sm: 4px;
-    --radius-md: 6px;
-    --radius-lg: 12px;
-    --radius-full: 20px;
+  /* ==================== SPACING & SIZING ==================== */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-full: 20px;
 
-    /* ==================== ANIMATIONS ==================== */
-    --animate-float-slow: floatSlow 10s ease-in-out infinite;
-    --animate-shimmer: shimmer 6s linear infinite;
-    --animate-pulse-glow: pulse-glow 2.5s infinite ease-in-out;
-    --animate-ember-glow: ember-glow 3s ease-in-out infinite;
+  /* ==================== ANIMATIONS ==================== */
+  --animate-float-slow: floatSlow 10s ease-in-out infinite;
+  --animate-shimmer: shimmer 6s linear infinite;
+  --animate-pulse-glow: pulse-glow 2.5s infinite ease-in-out;
+  --animate-ember-glow: ember-glow 3s ease-in-out infinite;
 }
 
 /* ==================== MOTION UTILITIES ==================== */
 
 @keyframes floatSlow {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-6px);
-    }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 @keyframes shimmer {
-    from {
-        background-position: 0 50%;
-    }
-    to {
-        background-position: 200% 50%;
-    }
+  from {
+    background-position: 0 50%;
+  }
+  to {
+    background-position: 200% 50%;
+  }
 }
 
 @keyframes pulse-glow {
-    0%,
-    100% {
-        box-shadow: 0 0 12px 0 rgba(255, 107, 53, 0.6);
-        opacity: 1;
-    }
-    50% {
-        box-shadow: 0 0 20px 8px rgba(255, 107, 53, 0.3);
-        opacity: 0.8;
-    }
+  0%,
+  100% {
+    box-shadow: 0 0 12px 0 rgba(255, 107, 53, 0.6);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 20px 8px rgba(255, 107, 53, 0.3);
+    opacity: 0.8;
+  }
 }
 
 @keyframes ember-glow {
-    0%,
-    100% {
-        box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
-    }
-    50% {
-        box-shadow: 0 0 30px rgba(255, 107, 53, 0.6);
-    }
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.6);
+  }
 }
 
 /* ==================== CUSTOM UTILITIES ==================== */
 
 @layer utilities {
-    /* Typography Utilities */
-    .font-headline {
-        font-family: var(--font-family-headline);
-        font-weight: var(--font-weight-headline-bold);
-        letter-spacing: var(--letter-spacing-tight);
-    }
+  /* Typography Utilities */
+  .font-headline {
+    font-family: var(--font-family-headline);
+    font-weight: var(--font-weight-headline-bold);
+    letter-spacing: var(--letter-spacing-tight);
+  }
 
-    .font-body {
-        font-family: var(--font-family-body);
-        font-weight: var(--font-weight-body-regular);
-    }
+  .font-body {
+    font-family: var(--font-family-body);
+    font-weight: var(--font-weight-body-regular);
+  }
 
-    .font-code {
-        font-family: var(--font-family-code);
-        font-weight: var(--font-weight-code-regular);
-    }
+  .font-code {
+    font-family: var(--font-family-code);
+    font-weight: var(--font-weight-code-regular);
+  }
 
-    /* Status Badge Utilities */
-    .badge-success {
-        background: rgba(0, 200, 150, 0.15);
-        color: var(--color-forged);
-        padding: 6px 12px;
-        border-radius: var(--radius-full);
-        font-size: 0.8rem;
-        font-weight: 600;
-        font-family: var(--font-family-code);
-    }
+  /* Status Badge Utilities */
+  .badge-success {
+    background: rgba(0, 200, 150, 0.15);
+    color: var(--color-forged);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: var(--font-family-code);
+  }
 
-    .badge-error {
-        background: rgba(255, 69, 69, 0.15);
-        color: var(--color-slag);
-        padding: 6px 12px;
-        border-radius: var(--radius-full);
-        font-size: 0.8rem;
-        font-weight: 600;
-        font-family: var(--font-family-code);
-    }
+  .badge-error {
+    background: rgba(255, 69, 69, 0.15);
+    color: var(--color-slag);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: var(--font-family-code);
+  }
 
-    /* Interactive Utilities */
-    .card-hover {
-        transition: transform 0.2s ease,
-        border-color 0.2s ease;
-    }
+  /* Interactive Utilities */
+  .card-hover {
+    transition: transform 0.2s ease,
+    border-color 0.2s ease;
+  }
 
-    .card-hover:hover {
-        transform: translateY(-5px);
-    }
+  .card-hover:hover {
+    transform: translateY(-5px);
+  }
 }
 
 /* ==================== BASE STYLES ==================== */
 
 @layer base {
-    /* Apply default body font */
-    body {
-        font-family: var(--font-family-body);
-        background-color: var(--color-void);
-        color: var(--color-text-main);
-    }
+  /* Apply default body font */
+  body {
+    font-family: var(--font-family-body);
+    background-color: var(--color-void);
+    color: var(--color-text-main);
+  }
 
-    /* Headlines use Space Grotesk with tight tracking by default */
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-family: var(--font-family-headline);
-        font-weight: var(--font-weight-headline-bold);
-        letter-spacing: var(--letter-spacing-tight);
-    }
+  /* Headlines use Space Grotesk with tight tracking by default */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-family-headline);
+    font-weight: var(--font-weight-headline-bold);
+    letter-spacing: var(--letter-spacing-tight);
+  }
 
-    /* Code elements use JetBrains Mono */
-    code,
-    pre,
-    kbd,
-    samp {
-        font-family: var(--font-family-code);
-    }
+  /* Code elements use JetBrains Mono */
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: var(--font-family-code);
+  }
 }
