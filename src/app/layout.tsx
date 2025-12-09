@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { JetBrains_Mono, Poppins, Space_Grotesk } from 'next/font/google';
 import React from 'react';
 
 const SITE_URL = 'https://ferrumc.com';
@@ -87,14 +88,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const jetBrainsMono = JetBrains_Mono({ subsets: ['latin'], weight: ['400', '500'] });
+const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600'] });
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], weight: ['500', '700'] });
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className="bg-neutral-900 text-white overflow-x-hidden flex flex-col min-h-screen">
+    <html
+      lang="en"
+      className={`${jetBrainsMono.className} ${poppins.className} ${spaceGrotesk.className}`}
+    >
+      <body className="bg-void text-main font-body overflow-x-hidden flex flex-col min-h-screen">
         {children}
       </body>
     </html>

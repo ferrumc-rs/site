@@ -1,6 +1,15 @@
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function Privacy() {
   return (
@@ -13,8 +22,8 @@ export default function Privacy() {
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">Introduction</h2>
           <p className="text-neutral-400 mb-4">
-            FerrumC (&#34;we&#34;, &#34;us&#34;, or &#34;our&#34;) is committed to protecting your
-            privacy. This Privacy Policy explains how we collect, use, and safeguard your
+            FerrumC (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) is committed to protecting
+            your privacy. This Privacy Policy explains how we collect, use, and safeguard your
             information when you visit our website or use our software.
           </p>
           <p className="text-neutral-400">
@@ -175,7 +184,7 @@ export default function Privacy() {
         <hr className="border-white/10 my-12" />
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Children&#39;s Privacy</h2>
+          <h2 className="text-2xl font-semibold mb-4">Children&apos;s Privacy</h2>
           <p className="text-neutral-400">
             FerrumC does not knowingly collect personal information from children under 13. If you
             believe we have collected information from a child, please contact us immediately.
@@ -209,7 +218,7 @@ export default function Privacy() {
           <h2 className="text-2xl font-semibold mb-4">Changes to This Policy</h2>
           <p className="text-neutral-400 mb-4">
             We may update this Privacy Policy from time to time. We will notify you of any changes
-            by posting the new policy on this page and updating the &#34;Last updated&#34; date.
+            by posting the new policy on this page and updating the &quot;Last updated&quot; date.
           </p>
           <p className="text-neutral-400">
             We encourage you to review this policy periodically for any changes.

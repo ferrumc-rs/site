@@ -1,15 +1,4 @@
-interface GitHubRelease {
-  tag_name: string;
-  name: string;
-  published_at: string;
-  body: string;
-  html_url: string;
-  author: {
-    login: string;
-    avatar_url: string;
-    html_url: string;
-  };
-}
+import { GitHubRelease } from '@/app/lib/types';
 
 export async function getReleases(): Promise<GitHubRelease[]> {
   const response = await fetch('https://api.github.com/repos/ferrumc-rs/ferrumc/releases', {
