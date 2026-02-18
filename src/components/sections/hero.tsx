@@ -13,7 +13,7 @@ export function Hero() {
         className={[
           "absolute -inset-1 overflow-hidden pointer-events-none",
           // Mobile: visible atmosphere, fades toward bottom where text sits
-          "opacity-40",
+          "opacity-25",
           "[mask-image:linear-gradient(to_bottom,black_40%,transparent_80%)]",
           "[-webkit-mask-image:linear-gradient(to_bottom,black_40%,transparent_80%)]",
           // Desktop: right-aligned with left-to-right fade
