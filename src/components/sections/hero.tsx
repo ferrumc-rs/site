@@ -8,16 +8,12 @@ import { TerminalCommand } from "@/components/ui/terminal-command";
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background video — lava pours in from beyond top-right edge */}
+      {/* Background video — portrait lava stream, right-aligned */}
       <div
         className="absolute inset-0 overflow-hidden pointer-events-none max-md:opacity-15"
         style={{
-          maskImage:
-            "linear-gradient(to right, transparent, black 35%), linear-gradient(to bottom, black 65%, transparent)",
-          maskComposite: "intersect",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent, black 35%), linear-gradient(to bottom, black 65%, transparent)",
-          WebkitMaskComposite: "source-in",
+          maskImage: "linear-gradient(to right, transparent, black 35%)",
+          WebkitMaskImage: "linear-gradient(to right, transparent, black 35%)",
         }}
       >
         <video
@@ -26,14 +22,11 @@ export function Hero() {
           loop
           playsInline
           preload="metadata"
-          className="absolute -top-[25vh] right-[-30vw] h-[140vh] w-auto"
+          className="absolute top-0 right-0 h-[150vh] w-auto"
         >
           <source src="/ferrumc-background.webm" type="video/webm" />
         </video>
       </div>
-
-      {/* Top gradient — bridges navbar into video, hides alpha gap */}
-      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-neutral-950 from-30% to-neutral-950/0 z-[1] pointer-events-none" />
 
       {/* Content — single fade-in, no stagger */}
       <motion.div

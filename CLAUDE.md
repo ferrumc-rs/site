@@ -32,7 +32,7 @@ src/
 │   ├── layout.tsx      # Root layout: fonts, dark mode, Toaster
 │   └── page.tsx        # Composes Navbar → Hero → Footer
 ├── components/
-│   ├── sections/       # Page sections (navbar, hero, footer, features, install, performance)
+│   ├── sections/       # Page sections (navbar, hero, footer)
 │   ├── ui/             # shadcn primitives + custom (terminal-command)
 │   └── three/          # 3D scene (unused)
 └── lib/
@@ -47,3 +47,9 @@ src/
 - **Path alias**: `@/*` maps to `./src/*`
 - **Client components**: Only use `"use client"` when needed (interactivity, hooks). Section components that are purely static should remain server components.
 - **Static assets**: `/public` — includes `logo.png` and the hero background video
+
+## Install Scripts
+
+`public/install.sh` (Linux/macOS) and `public/install.ps1` (Windows) — platform-specific installers that download the FerrumC binary from GitHub Releases into a server directory. The website component `src/components/ui/terminal-command.tsx` auto-detects the visitor's OS and shows the appropriate command.
+
+See [`docs/install-scripts.md`](docs/install-scripts.md) for full details: supported targets, env var overrides, and platform-specific gotchas (LF line endings, PS 5.1 compat, base64 banner encoding).
