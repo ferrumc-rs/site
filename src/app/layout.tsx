@@ -48,9 +48,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/banner.png",
-        width: 2013,
-        height: 1102,
+        url: "/banner.jpg",
+        width: 1200,
+        height: 657,
         alt: "FerrumC — High-performance Minecraft server in Rust",
       },
     ],
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FerrumC — A Minecraft server built in Rust",
     description,
-    images: ["/banner.png"],
+    images: ["/banner.jpg"],
   },
   icons: {
     icon: "/logo.png",
