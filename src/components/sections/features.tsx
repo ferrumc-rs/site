@@ -64,7 +64,7 @@ function PillarPanel({
       {/* Top accent gradient line */}
       <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-ferrum via-ferrum-amber to-ferrum opacity-40" />
 
-      <div className="bg-[#141210] border border-[#2a2520]/30 border-t-0 rounded-xl p-8 sm:p-10 lg:p-12">
+      <div className="bg-[#141210] border border-[#2a2520]/30 border-t-0 rounded-xl p-5 sm:p-8 md:p-10 lg:p-12">
         <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-16">
           {/* Left: title + description */}
           <div className="lg:flex-1">
@@ -100,7 +100,7 @@ function PillarPanel({
 
 export function Features() {
   return (
-    <section id="features" className="relative py-28 sm:py-36 bg-[#0A0908]">
+    <section id="features" className="relative py-20 sm:py-28 md:py-36 bg-[#0A0908]">
       {/* Top divider */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-ferrum/15 to-transparent" />
 
@@ -116,7 +116,7 @@ export function Features() {
           <span className="text-sm font-medium tracking-wider text-ferrum uppercase">
             Features
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mt-4 tracking-tight">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4 tracking-tight">
             Everything you need,{" "}
             <span className="text-neutral-500">nothing you don&apos;t.</span>
           </h2>

@@ -49,8 +49,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/banner.png",
-        width: 1200,
-        height: 630,
+        width: 2013,
+        height: 1102,
         alt: "FerrumC — High-performance Minecraft server in Rust",
       },
     ],

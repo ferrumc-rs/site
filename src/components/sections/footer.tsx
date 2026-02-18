@@ -37,7 +37,7 @@ export function Footer() {
   return (
     <>
       {/* CTA Section */}
-      <section id="install" className="relative py-28 sm:py-36 bg-[#0A0908] overflow-hidden">
+      <section id="install" className="relative py-20 sm:py-28 md:py-36 bg-[#0A0908] overflow-hidden">
         {/* Warm ambient glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-ferrum/[0.04] blur-[100px]" />
@@ -46,23 +46,23 @@ export function Footer() {
         {/* Top divider */}
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-ferrum/15 to-transparent" />
 
-        <div className="relative max-w-3xl mx-auto px-6 text-center">
+        <div className="relative max-w-3xl mx-auto px-5 sm:px-6 text-center">
           <span className="text-sm font-medium tracking-wider text-ferrum uppercase">
             Get Started
           </span>
 
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mt-4 mb-5">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mt-4 mb-5">
             One command. That&apos;s it.
           </h2>
 
-          <p className="text-neutral-400 max-w-md mx-auto mb-10">
+          <p className="text-sm sm:text-base text-neutral-400 max-w-md mx-auto mb-8 sm:mb-10">
             Install FerrumC and have a server running in seconds. Open source,
             MIT licensed, free forever.
           </p>
 
           {/* Terminal */}
-          <div className="flex justify-center mb-10">
-            <TerminalCommand className="max-w-xl" />
+          <div className="flex justify-center mb-8 sm:mb-10">
+            <TerminalCommand className="w-full max-w-xl" />
           </div>
 
           {/* CTAs */}
@@ -121,7 +121,7 @@ export function Footer() {
 
       {/* Footer */}
       <footer className="border-t border-white/5 bg-[#060605]">
-        <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 pt-12 sm:pt-16 pb-8">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-16">
             {/* Logo + tagline */}
             <div className="col-span-2">

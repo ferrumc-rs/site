@@ -52,7 +52,7 @@ export function TerminalCommand({ className }: { className?: string }) {
       {/* Terminal box */}
       <div className="relative group inline-flex w-full">
         <div className="absolute -inset-px rounded-lg bg-gradient-to-r from-ferrum/20 via-ferrum-amber/20 to-ferrum/20 opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
-        <div className="relative flex items-center gap-3 rounded-lg border border-white/10 bg-neutral-950 px-4 py-3 w-full">
+        <div className="relative flex items-center gap-2 sm:gap-3 rounded-lg border border-white/10 bg-neutral-950 px-3 sm:px-4 py-3 w-full min-w-0">
           <span className="text-ferrum select-none font-mono text-sm">
             {prompt}
           </span>
@@ -73,11 +73,14 @@ export function TerminalCommand({ className }: { className?: string }) {
       </div>
 
       {/* Subtext */}
-      <div className="flex items-center justify-between mt-3 px-1 text-xs text-neutral-500">
-        <span>
+      <div className="flex items-center justify-between mt-3 px-1 text-xs text-neutral-500 gap-2">
+        <span className="hidden sm:inline">
           Creates a server directory and downloads the latest binary.
         </span>
-        <div className="flex items-center gap-3 shrink-0 ml-4">
+        <span className="sm:hidden">
+          Downloads the latest binary.
+        </span>
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <button
             onClick={togglePlatform}
             className="hover:text-neutral-300 transition-colors cursor-pointer"

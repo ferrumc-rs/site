@@ -73,12 +73,12 @@ function StatCard({ stat, index }: { stat: Stat; index: number }) {
       {/* Hover glow */}
       <div className="absolute -inset-px rounded-xl bg-gradient-to-b from-ferrum/25 to-transparent opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
 
-      <div className="relative rounded-xl bg-[#141210] border border-[#2a2520]/30 p-8 sm:p-10 text-center overflow-hidden">
+      <div className="relative rounded-xl bg-[#141210] border border-[#2a2520]/30 p-6 sm:p-8 md:p-10 text-center overflow-hidden">
         {/* Top accent */}
         <div className="absolute top-0 inset-x-6 h-[2px] bg-gradient-to-r from-transparent via-ferrum/30 to-transparent" />
 
         <div className="relative">
-          <div className="text-7xl sm:text-8xl lg:text-[6.5rem] font-display font-bold bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-transparent leading-none tracking-tight">
+          <div className="text-6xl sm:text-7xl md:text-8xl lg:text-[6.5rem] font-display font-bold bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-transparent leading-none tracking-tight">
             {count}
             {stat.suffix}
           </div>
@@ -96,7 +96,7 @@ function StatCard({ stat, index }: { stat: Stat; index: number }) {
 
 export function Performance() {
   return (
-    <section id="performance" className="relative py-28 sm:py-36">
+    <section id="performance" className="relative py-20 sm:py-28 md:py-36">
       {/* Top divider */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
 
@@ -111,7 +111,7 @@ export function Performance() {
           <span className="text-sm font-medium tracking-wider text-ferrum uppercase">
             Performance
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mt-4 tracking-tight">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4 tracking-tight">
             Numbers don&apos;t lie.
           </h2>
           <p className="mt-5 text-neutral-400 max-w-lg mx-auto text-lg">
