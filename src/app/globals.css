@@ -46,9 +46,9 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
-  --color-ferrum: #F74C00;
-  --color-ferrum-amber: #FF8C00;
-  --color-ferrum-glow: #FF6B2B;
+  --color-ferrum: #E8610A;
+  --color-ferrum-amber: #F09030;
+  --color-ferrum-glow: #ED7420;
 }
 
 :root {

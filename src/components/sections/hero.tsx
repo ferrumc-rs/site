@@ -1,128 +1,78 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Copy, Check, Download } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
+import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const INSTALL_CMD = "curl -fsSL https://ferrumc.com/install.sh | sh";
+import { TerminalCommand } from "@/components/ui/terminal-command";
 
 export function Hero() {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(INSTALL_CMD);
-    setCopied(true);
-    toast.success("Copied to clipboard!");
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background video — right ~60%, bleeds to viewport edge */}
-      <div className="absolute inset-y-0 right-0 w-[60%] max-md:w-full max-md:opacity-20 pointer-events-none">
+      {/* Background video — lava pours in from beyond top-right edge */}
+      <div
+        className="absolute inset-0 overflow-hidden pointer-events-none max-md:opacity-15"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent, black 35%), linear-gradient(to bottom, black 65%, transparent)",
+          maskComposite: "intersect",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 35%), linear-gradient(to bottom, black 65%, transparent)",
+          WebkitMaskComposite: "source-in",
+        }}
+      >
         <video
           autoPlay
           muted
           loop
           playsInline
           preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute -top-[25vh] right-[-30vw] h-[140vh] w-auto"
         >
-          <source
-            src="/ferrumc-background-graphic-animation.mp4"
-            type="video/mp4"
-          />
+          <source src="/ferrumc-background.webm" type="video/webm" />
         </video>
-        {/* Left-edge gradient fade into page background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent" />
-        {/* Bottom fade */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0A0A0A] to-transparent" />
-        {/* Top fade */}
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0A0A0A] to-transparent" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20 w-full">
+      {/* Top gradient — bridges navbar into video, hides alpha gap */}
+      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-neutral-950 from-30% to-neutral-950/0 z-[1] pointer-events-none" />
+
+      {/* Content — single fade-in, no stagger */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20 w-full"
+      >
         <div className="max-w-2xl">
           {/* Label */}
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="flex items-center gap-3 mb-8"
-          >
-            <div className="h-px w-8 bg-ferrum" />
-            <span className="text-sm font-medium tracking-wider text-ferrum/80 uppercase">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-px w-8 bg-stone-600" />
+            <span className="text-sm font-medium tracking-wider text-stone-500 uppercase">
               Experimental &middot; Open Source &middot; MIT
             </span>
-          </motion.div>
+          </div>
 
           {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]"
-          >
+          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]">
             Minecraft Servers,
             <br />
             <span className="bg-gradient-to-r from-ferrum to-ferrum-amber bg-clip-text text-transparent">
               Forged in Rust.
             </span>
-          </motion.h1>
+          </h1>
 
           {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="mt-6 text-lg text-neutral-400 max-w-xl leading-relaxed"
-          >
-            FerrumC is a fully multi-threaded Minecraft server implementation
-            that runs circles around Java. A drop-in replacement&mdash;no client
-            mods required.
-          </motion.p>
+          <p className="mt-6 text-lg text-neutral-400 max-w-xl leading-relaxed">
+            A fully multi-threaded Minecraft server that runs circles around
+            Java. Drop-in replacement&mdash;no client mods required.
+          </p>
 
           {/* Install command */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-            className="mt-8"
-          >
-            <div className="relative group inline-flex w-full max-w-xl">
-              {/* Hover glow */}
-              <div className="absolute -inset-px rounded-lg bg-gradient-to-r from-ferrum/30 via-ferrum-amber/30 to-ferrum/30 opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
-              <div className="relative flex items-center gap-3 rounded-lg border border-white/10 bg-neutral-950 px-4 py-3 w-full">
-                <span className="text-ferrum select-none font-mono text-sm">
-                  $
-                </span>
-                <code className="font-mono text-sm text-neutral-300 flex-1 overflow-x-auto whitespace-nowrap scrollbar-none">
-                  {INSTALL_CMD}
-                </code>
-                <button
-                  onClick={handleCopy}
-                  className="shrink-0 p-1.5 rounded-md hover:bg-white/5 text-neutral-500 hover:text-neutral-300 transition-colors cursor-pointer"
-                >
-                  {copied ? (
-                    <Check className="w-4 h-4 text-green-500" />
-                  ) : (
-                    <Copy className="w-4 h-4" />
-                  )}
-                </button>
-              </div>
-            </div>
-          </motion.div>
+          <div className="mt-10">
+            <TerminalCommand className="max-w-xl" />
+          </div>
 
           {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-            className="mt-6 flex flex-wrap gap-4"
-          >
+          <div className="mt-8 flex flex-wrap gap-4">
             <Button
               size="lg"
               className="bg-ferrum hover:bg-ferrum/90 text-white font-semibold cursor-pointer"
@@ -147,9 +97,9 @@ export function Hero() {
                 View on GitHub
               </a>
             </Button>
-          </motion.div>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
