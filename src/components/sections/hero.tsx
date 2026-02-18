@@ -28,7 +28,7 @@ export function Hero() {
         </video>
       </div>
 
-      {/* Content — single fade-in, no stagger */}
+      {/* Content */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -36,27 +36,19 @@ export function Hero() {
         className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20 w-full"
       >
         <div className="max-w-2xl">
-          {/* Label */}
-          <div className="flex items-center gap-3 mb-8">
-            <div className="h-px w-8 bg-stone-600" />
-            <span className="text-sm font-medium tracking-wider text-stone-500 uppercase">
-              Experimental &middot; Open Source &middot; MIT
-            </span>
-          </div>
-
           {/* Headline */}
           <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]">
             Minecraft Servers,
             <br />
             <span className="bg-gradient-to-r from-ferrum to-ferrum-amber bg-clip-text text-transparent">
-              Forged in Rust.
+              Reforged.
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-6 text-lg text-neutral-400 max-w-xl leading-relaxed">
-            A fully multi-threaded Minecraft server that runs circles around
-            Java. Drop-in replacement&mdash;no client mods required.
+          <p className="mt-6 text-lg text-neutral-300 max-w-xl leading-relaxed">
+            Multi-threaded performance that uses every core on your machine.
+            Compatible with vanilla clients, no mods needed.
           </p>
 
           {/* Install command */}
