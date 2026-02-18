@@ -1,15 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Copy, Check, Download } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-
-const HeroScene = dynamic(() => import("@/components/three/hero-scene"), {
-  ssr: false,
-});
 
 const INSTALL_CMD = "curl -fsSL https://ferrumc.com/install.sh | sh";
 
@@ -25,12 +20,27 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Orange ambient glow */}
-      <div className="absolute right-[-10%] top-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-ferrum/10 blur-[120px] pointer-events-none" />
-
-      {/* 3D Scene — positioned right */}
-      <div className="absolute right-[-5%] top-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none max-lg:right-[-20%] max-lg:opacity-60 max-md:hidden">
-        <HeroScene />
+      {/* Background video — right ~60%, bleeds to viewport edge */}
+      <div className="absolute inset-y-0 right-0 w-[60%] max-md:w-full max-md:opacity-20 pointer-events-none">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source
+            src="/ferrumc-background-graphic-animation.mp4"
+            type="video/mp4"
+          />
+        </video>
+        {/* Left-edge gradient fade into page background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent" />
+        {/* Bottom fade */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0A0A0A] to-transparent" />
+        {/* Top fade */}
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0A0A0A] to-transparent" />
       </div>
 
       {/* Content */}
