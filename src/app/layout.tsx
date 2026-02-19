@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Syne } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { GoogleAnalytics } from "@/components/analytics";
+import { DevBanner } from "@/components/sections/dev-banner";
+import { Navbar } from "@/components/sections/navbar";
+import { Footer } from "@/components/sections/footer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -92,7 +95,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <link rel="canonical" href={siteUrl} />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -108,7 +110,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} antialiased`}
       >
-        {children}
+        <DevBanner />
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
         <Toaster />
         <GoogleAnalytics />
       </body>

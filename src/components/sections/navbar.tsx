@@ -8,9 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Github, Menu, X, Download, Heart } from "lucide-react";
 
 const navLinks = [
-  { label: "Features", href: "#features" },
-  { label: "Performance", href: "#performance" },
-  { label: "Install", href: "#install" },
+  { label: "Blog", href: "/blog" },
   { label: "Docs", href: "https://docs.ferrumc.com" },
   { label: "Discord", href: "https://discord.gg/qT5J8EMjwk" },
 ];
