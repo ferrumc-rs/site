@@ -70,22 +70,6 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "FerrumC",
-  description,
-  applicationCategory: "GameApplication",
-  operatingSystem: "Linux, macOS, Windows",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-  },
-  url: siteUrl,
-  downloadUrl: "https://github.com/ferrumc-rs/ferrumc/releases",
-  license: "https://opensource.org/licenses/MIT",
-};
 
 export default function RootLayout({
   children,
@@ -101,10 +85,6 @@ export default function RootLayout({
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body

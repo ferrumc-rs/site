@@ -8,9 +8,14 @@ export function DevBanner() {
         <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-ferrum/40 to-transparent" />
 
         <Construction className="w-3.5 h-3.5 text-ferrum-amber shrink-0" />
-        <span className="text-neutral-300">
+        <span className="text-neutral-300 truncate px-2">
           <span className="text-ferrum-amber font-semibold">Alpha</span>
-          {" · FerrumC is under active development and not production-ready."}
+          <span className="hidden sm:inline">
+            {" · FerrumC is under active development and not production-ready."}
+          </span>
+          <span className="sm:hidden">
+            {" · Under active development"}
+          </span>
         </span>
       </div>
     </div>

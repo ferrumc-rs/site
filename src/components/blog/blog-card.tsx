@@ -39,14 +39,14 @@ export function BlogCard({ blog, index }: { blog: Blog; index: number }) {
             {blog.description}
           </p>
 
-          {/* Bottom row */}
-          <div className="flex items-center justify-between mt-6 pt-5 border-t border-neutral-800/40">
+          {/* Bottom */}
+          <div className="mt-6 pt-5 border-t border-neutral-800/40 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div className="flex items-center gap-3">
               <Image
                 src={`https://github.com/${blog.author}.png`}
                 alt={blog.author}
-                width={24}
-                height={24}
+                width={20}
+                height={20}
                 className="rounded-full"
               />
               {blog.authorUrl ? (
