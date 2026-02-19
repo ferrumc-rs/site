@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Download, Github, MessageCircle } from "lucide-react";
+import { Download, Github, Heart, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TerminalCommand } from "@/components/ui/terminal-command";
 
@@ -19,6 +19,7 @@ const footerLinks = {
   Community: [
     { label: "GitHub", href: "https://github.com/ferrumc-rs/ferrumc" },
     { label: "Discord", href: "https://discord.gg/qT5J8EMjwk" },
+    { label: "Sponsor", href: "https://github.com/sponsors/sweattypalms" },
     {
       label: "Contributing",
       href: "https://github.com/ferrumc-rs/ferrumc/blob/master/CONTRIBUTING.md",
@@ -104,6 +105,16 @@ export function Footer() {
             >
               <MessageCircle className="w-4 h-4" />
               Join the Discord community
+            </a>
+            <span className="hidden sm:inline text-neutral-700">|</span>
+            <a
+              href="https://github.com/sponsors/sweattypalms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 hover:text-pink-400 transition-colors"
+            >
+              <Heart className="w-4 h-4" />
+              Sponsor the project
             </a>
             <span className="hidden sm:inline text-neutral-700">|</span>
             <a

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Github, Menu, X, Download } from "lucide-react";
+import { Github, Menu, X, Download, Heart } from "lucide-react";
 
 const navLinks = [
   { label: "Features", href: "#features" },
@@ -71,6 +71,14 @@ export function Navbar() {
           >
             <Github className="w-5 h-5" />
           </Link>
+          <Link
+            href="https://github.com/sponsors/sweattypalms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-neutral-400 hover:text-pink-400 transition-colors duration-200"
+          >
+            <Heart className="w-5 h-5" />
+          </Link>
           <Button
             size="sm"
             className="bg-ferrum hover:bg-ferrum/90 text-white font-medium cursor-pointer"
@@ -127,6 +135,14 @@ export function Navbar() {
                   className="text-neutral-400 hover:text-white transition-colors"
                 >
                   <Github className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="https://github.com/sponsors/sweattypalms"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-400 hover:text-pink-400 transition-colors"
+                >
+                  <Heart className="w-5 h-5" />
                 </Link>
                 <Button
                   size="sm"
